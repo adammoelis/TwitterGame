@@ -1,23 +1,6 @@
 class User < ActiveRecord::Base
   has_many :tweets, dependent: :destroy
 
-
-
-  # attr_reader :username
-  #
-  #
-  #
-  # def initialize(username)
-  #   @username = username
-  # end
-
-
-
-
-
-
-
-  #
   # def slug
   #   @name.downcase.gsub(" ","_")
   # end

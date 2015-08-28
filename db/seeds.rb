@@ -7,7 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-Tweet.fetch_tweets_for("adammoelis")
+
+Tweet.fetch_tweets_for("realdonaldtrump")
+Tweet.fetch_tweets_for("hillaryclinton")
+Tweet.fetch_tweets_for("djpaulyd")
+
 
 
 
