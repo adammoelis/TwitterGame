@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Tweet.fetch_tweets_for("adammoelis")
+
+
+
+
+
+# I want this method to create a user named Adam Moelis
+# I want this method to create 3,000 tweets associated with Adam Moelis
