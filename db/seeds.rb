@@ -8,9 +8,8 @@
 
 
 
-Tweet.fetch_tweets_for("realdonaldtrump")
-Tweet.fetch_tweets_for("hillaryclinton")
-Tweet.fetch_tweets_for("djpaulyd")
+Tweet.fetch_tweets_for("adammoelis")
+
 
 
 

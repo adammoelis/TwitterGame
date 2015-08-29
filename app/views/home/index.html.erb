@@ -1,12 +1,44 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Welcome to the Twitter Game</h1>
+<p>Who do you think tweeted this:</p>
 
-<% @users.all.each do |user| %>
-<%= user.name %>
-<br>
-<% end %>
-<br>
 
+<br>
+<% @user = @users.sample %>
 <%= @user.name %>
 <br>
 <%= @user.tweets.sample.text %>
+<br>
+<br>
+
+
+
+<%= form_for @user do |f| %>
+
+  <% @users.all.each do |user| %>
+
+    <input type="submit" class="myButton" name="name" value="<%= user.name %>">
+    <br>
+
+  <% end %>
+  <br>
+  <p>Your Score</p>
+  <input class="score" type="text" name="score" value="<%= @score %>" readonly>
+  <br>
+  <p>Your Attempts</p>
+  <input class="score" type="text" name="attempts" value="<%= @attempts %>" readonly>
+  <br>
+  <p>Percentage</p>
+  <% if @attempts >0 %>
+    <input class="score" type="text" name="percentage" value="<%= 100*@score/@attempts %>%" readonly>
+  <% else %>
+    <input class="score" type="text" name="percentage" value="N/A" readonly>
+
+  <% end %>
+<% end %>
+
+<form action="home/new" method="post">
+  <br>
+  <label for="username"> Enter a new Twitter handle</label>
+  <input id="username" type="text" name="username" value="Enter Username">
+  <input type="submit" value="Submit">
+</form>
