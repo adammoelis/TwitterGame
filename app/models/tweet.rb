@@ -18,6 +18,7 @@ class Tweet < ActiveRecord::Base
 
   def self.fetch_tweets_for(username)
     user = User.create(name: get_name(username))
+    user.make_img_folder
     # binding.pry
     filter_tweets(username).each do |tweet|
       # binding.pry
