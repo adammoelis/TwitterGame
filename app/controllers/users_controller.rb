@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     end
     @attempts = params[:attempts].to_i + 1
     @users = User.all
-    render "home/index"
+    redirect_to :controller => 'home', :action => 'index', :score => @score 
   end
 
   # DELETE /users/1

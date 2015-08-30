@@ -4,9 +4,9 @@ class HomeController < ApplicationController
 
   def index
     @users = User.all
-    @user = @users.sample
-    # binding.pry
+    binding.pry
     @score ||= 0
+    @score = params[:score] if params[:score]
     @attempts ||= 0
     render 'home/index'
   end
@@ -25,7 +25,6 @@ class HomeController < ApplicationController
     rescue
       # binding.pry
       redirect_to 'home/index'
-      return
     else
       binding.pry
       if User.find_by_name(@name)
