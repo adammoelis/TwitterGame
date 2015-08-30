@@ -4,9 +4,10 @@ class HomeController < ApplicationController
 
   def index
     @users = User.all
-    binding.pry
+    # binding.pry
     @score ||= 0
-    @score = params[:score] if params[:score]
+    @score = params[:score].to_i if params[:score]
+    @attempts = params[:attempts].to_i if params[:attempts]
     @attempts ||= 0
     render 'home/index'
   end
