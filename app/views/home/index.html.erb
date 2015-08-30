@@ -1,5 +1,8 @@
-<h1>Welcome to the Twitter Game</h1>
-<p>Who do you think tweeted this:</p>
+<h1>Who Tweeted It?</h1>
+
+
+<%=image_tag("donald_trump/donald_trump.jpeg", alt: "Donald Trump")%>
+<%=image_tag("hillary_clinton/hillary_clinton.jpeg", alt: "Hillary Clinton")%>
 
 
 <br>
@@ -17,7 +20,7 @@
   <% @users.all.each do |user| %>
 
     <input type="submit" class="myButton" name="name" value="<%= user.name %>">
-    
+
 
   <% end %>
   <br>
