@@ -47,10 +47,8 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    binding.pry
-
-    if User.find_by_name(params[:name])
-      @user = User.find_by_name(params[:name])
+    if User.where("name Like ?", params[:name]).first
+      @user = User.where("name Like ?", params[:name]).first
       @user.destroy
     end
     redirect_to :controller => 'home', :action => 'index'
