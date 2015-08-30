@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show, :update]
 
 
   # GET /users
@@ -38,12 +39,21 @@ class UsersController < ApplicationController
     end
     @attempts = params[:attempts].to_i + 1
     @users = User.all
-    redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts 
+    # session[:tmp_score] = @score
+    # session[:tmp_attempts] = @attempts
+    redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    binding.pry
+
+    if User.find_by_name(params[:name])
+      @user = User.find_by_name(params[:name])
+      @user.destroy
+    end
+    redirect_to :controller => 'home', :action => 'index'
 
   end
 

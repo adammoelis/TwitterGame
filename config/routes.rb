@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'home/new'
   post 'home/update'
   get 'home/update'
+  delete 'home/destroy'
 
   resources :users
   resources :tweets

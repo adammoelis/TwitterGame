@@ -36,9 +36,15 @@
   <% end %>
 <% end %>
 
-<form action="home/new" method="post">
+<form action="new" method="post">
   <br>
   <label for="username"> Enter a new Twitter handle</label>
   <input id="username" type="text" name="username" value="Enter Username">
   <input type="submit" value="Submit">
 </form>
+
+<%= form_for @user, :method => :delete do  %>
+  <%= label_tag(:name, "Enter a name above to delete") %>
+  <%= text_field_tag(:name, "Enter name") %>
+  <%= submit_tag "Delete" %>
+<% end %>
