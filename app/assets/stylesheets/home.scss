@@ -55,16 +55,11 @@
 
 img {
 	position: absolute;
-	height: 100px;
-	width: 100px;
+
 	right: -50px;
 	top: 50px;
 }
 
-.image_wrapper {
-	overflow: hidden;
-	position: relative;
-}
 
 #name_button {
 	display: in-line;
@@ -80,7 +75,23 @@ img {
 	position: relative;
 }
 
-.donald_j_trump:hover > #hidden {
+.donald_j_trump {
+	border: solid red;
+	background-color: red;
+}
+
+
+.donald_j_trump:hover > div#hidden.donald_j_trump_img {
+    position: absolute;
+		overflow: visible;
+		height: 100px;
+		width: 100px;
+		right: 150px;
+		top: 50px;
+
+}
+
+.hillary_clinton:hover > div#hidden.hillary_clinton_img {
     position: absolute;
 		overflow: visible;
 		height: 100px;

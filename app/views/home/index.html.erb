@@ -1,10 +1,6 @@
 <h1>Who Tweeted It?</h1>
 
-<div class ="image_wrapper">
 
-<%=image_tag("donald_trump/donald_trump.jpeg", alt: "Donald Trump")%>
-<%=image_tag("hillary_clinton/hillary_clinton.jpeg", alt: "Hillary Clinton")%>
-</div>
 
 
 <br>
@@ -20,8 +16,8 @@
   <% @users.all.each do |user| %>
   <div id="name_button" class="<%= user.slug %>">
     <input type="submit" class="myButton" name="name" value="<%= user.name %>">
-    <div id="hidden">
-      <%=image_tag("donald_j_trump/donald_trump.jpeg", alt: "Donald Trump")%>
+    <div id="hidden" class ="<%= user.slug %>_img">
+      <%=image_tag("#{user.slug}/#{Dir.entries("app/assets/images/#{user.slug}").drop(2).sample}", alt: "#{user.name}")%>
     </div>
   <div>
   <% end %>
@@ -44,12 +40,12 @@
 <form action="new" method="post">
   <br>
   <label for="username"> Enter a new Twitter handle</label>
-  <input id="username" type="text" name="username" value="Enter Username">
+  <input id="username" type="text" name="username" value="(ex: kingjames)">
   <input type="submit" value="Submit">
 </form>
 
 <%= form_for @user, :method => :delete do  %>
   <%= label_tag(:name, "Enter a name above to delete") %>
-  <%= text_field_tag(:name, "Enter name") %>
+  <%= text_field_tag(:name, "(ex: Adam Moelis)") %>
   <%= submit_tag "Delete" %>
 <% end %>
