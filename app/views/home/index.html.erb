@@ -1,4 +1,6 @@
-<h1>Who Tweeted It?</h1>
+<div class="title">
+  <h1>Who Tweeted It?</h1>
+</div>
 
 
 
@@ -7,7 +9,11 @@
 <% @user = @users.sample %>
 <% @user.name %>
 <br>
-<%= @user.tweets.sample.text %>
+
+<div class="tweet">
+<h2><%= @user.tweets.sample.text %></h2>
+</div>
+
 <br>
 <br>
 
@@ -19,7 +25,7 @@
     <div id="hidden" class ="<%= user.slug %>_img">
       <%=image_tag("#{user.slug}/#{Dir.entries("app/assets/images/#{user.slug}").drop(2).sample}", alt: "#{user.name}")%>
     </div>
-  <div>
+  </div>
   <% end %>
   <br>
   <p>Your Score</p>
