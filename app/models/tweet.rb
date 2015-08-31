@@ -1,11 +1,7 @@
 
 class Tweet < ActiveRecord::Base
+  include Key
   belongs_to :user
-
-  CONSUMER_KEY = "S8ugRY4BokIhrEsSaZsv9SKnF"
-  CONSUMER_SECRET = "wUSxstDyP2c6wShCCVgtCxmSYpNJPDASiNtDmPcUFDGPfW3rK9"
-  ACCESS_TOKEN = "15600046-fzVeGUlzdSEQigBQgJ3vazLsPbn1VnuXQFZBBQ6CI"
-  ACCESS_TOKEN_SECRET = "XiRcdQpwhLb19VlDngwn24bvmSYqzbtixJNgxupBFZyix"
 
   @@client = Twitter::REST::Client.new do |config|
     config.consumer_key        = CONSUMER_KEY

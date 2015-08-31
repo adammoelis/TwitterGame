@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'home/index'
   post 'home/new'
   get 'home/new'
-  post 'home/update'
+  patch 'home/update'
   get 'home/update'
   delete 'home/destroy'
 

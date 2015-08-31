@@ -4,7 +4,6 @@
 
 
 
-
 <br>
 <% @user = @users.sample %>
 <% @user.name %>
@@ -26,6 +25,7 @@
       <%=image_tag("#{user.slug}/#{Dir.entries("app/assets/images/#{user.slug}").drop(2).sample}", alt: "#{user.name}")%>
     </div>
   </div>
+
   <% end %>
   <br>
   <p>Your Score</p>

@@ -27,6 +27,20 @@ class HomeController < ApplicationController
     redirect_to '/home/index'
   end
 
+  # def update
+  #   binding.pry
+  #   if params[:name] == @user.name
+  #     @score = params[:score].to_i + 1
+  #   else
+  #     @score = params[:score].to_i
+  #   end
+  #   @attempts = params[:attempts].to_i + 1
+  #   @users = User.all
+  #   # session[:tmp_score] = @score
+  #   # session[:tmp_attempts] = @attempts
+  #   redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts
+  # end
+
 
   private
 
