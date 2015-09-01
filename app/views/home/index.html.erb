@@ -10,20 +10,20 @@
 <br>
 
 <div class="tweet">
-<h2><%= @user.tweets.sample.text %></h2>
+  <h2><%= @user.tweets.sample.text %></h2>
 </div>
 
 <div class = "wrapper">
 <%= form_for @user do |f| %>
 
   <span>
-  <p>Your Score</p>
-  <input class="score" type="text" name="score" value="<%= @score %>" readonly>
+    <p>Your Score</p>
+    <input class="score" type="text" name="score" value="<%= @score %>" readonly>
   </span>
 
   <span>
-  <p>Your Attempts</p>
-  <input class="score" type="text" name="attempts" value="<%= @attempts %>" readonly>
+    <p>Your Attempts</p>
+    <input class="score" type="text" name="attempts" value="<%= @attempts %>" readonly>
   </span>
 
   <span>
@@ -98,4 +98,12 @@
   <%= label_tag(:name, "Enter a name above to delete") %>
   <%= text_field_tag(:name, "(ex: Adam Moelis)") %>
   <%= submit_tag "Delete" %>
+<% end %>
+
+<% if @attempts > 0 %>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="I got <%=100*@score/@attempts %>% right! How many can you get? #WhoTweetedIt">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<% else %>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="Awesome game. Play it! #WhoTweetedIt">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <% end %>
