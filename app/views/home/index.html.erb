@@ -48,7 +48,7 @@
       </span>
     <% when 25...50 %>
       <span>
-      <p>Status</p>
+      <p>Feedback</p>
       <input class="score bad" type="text"  value="You KINDA suck" readonly>
       </span>
     <% else %>
@@ -88,14 +88,18 @@
     <p class="answer_status"> Wrong! It was <%= @former_right_user.name if @former_right_user%> </p>
   <% end %>
   </div>
-  <% if @attempts > 0 %>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-text="I got <%=100*@score/@attempts %>% right! How many can you get? #WhoTweetedIt">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-  <% else %>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Awesome game. Play it! #WhoTweetedIt">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-  <% end %>
+
+    <ul class="social">
+      <% if @attempts > 0 %>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-text="I got <%=100*@score/@attempts %>% right! How many can you get? #WhoTweetedIt">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <% else %>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-text="How many can you get? #WhoTweetedIt">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <% end %>
+  </ul>
 </div>
+
 
 <div class="big_space"></div>
 

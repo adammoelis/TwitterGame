@@ -87,6 +87,17 @@ h2 {
 
 }
 
+#hidden.dj_pauly_d_img {
+	// overflow: hidden;
+	position: relative;
+	position: absolute;
+	right: -500px;
+	top: 400px;
+	height: 250px;
+	width: 250px;
+	transition: 0.5s;
+}
+
 #hidden {
 	// overflow: hidden;
 	position: relative;
@@ -188,4 +199,12 @@ span {
 
 .answer_status_box {
 	margin-top: 60px;
+}
+
+.social {
+	display: inline;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+
 }
