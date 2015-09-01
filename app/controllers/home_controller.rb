@@ -27,7 +27,6 @@ class HomeController < ApplicationController
   end
 
   def update_score
-    # binding.pry
     @user = User.find(params[:user_id])
     if params[:name] == @user.name
       @score = params[:score].to_i + 1

@@ -4,55 +4,12 @@ class UsersController < ApplicationController
   http_basic_authenticate_with name: USERNAME, password: PASSWORD, except: [:index, :show, :update]
 
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
-  # POST /users
-  # POST /users.json
-  def create
-
-  end
-
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    if params[:name] == @user.name
-      @score = params[:score].to_i + 1
-    else
-      @score = params[:score].to_i
-    end
-    @attempts = params[:attempts].to_i + 1
-    @users = User.all
-    render 'home/index'
-    # redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     if User.where("name Like ?", params[:name]).first
       @user = User.where("name Like ?", params[:name]).first
       @user.destroy
     end
     redirect_to :controller => 'home', :action => 'index'
-
   end
 
   private
