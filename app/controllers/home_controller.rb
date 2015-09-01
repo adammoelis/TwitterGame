@@ -27,16 +27,17 @@ class HomeController < ApplicationController
   end
 
   def update_score
-    @user = User.find(params[:user_id])
-    if params[:name] == @user.name
+    @former_right_user = User.find(params[:user_id])
+    if params[:name] == @former_right_user.name
+      @answer_status = true
       @score = params[:score].to_i + 1
     else
+      @answer_status = false
       @score = params[:score].to_i
     end
     @attempts = params[:attempts].to_i + 1
     @users = User.all
     render 'home/index'
-    # redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts
   end
 
 

@@ -80,7 +80,24 @@
   <br>
   <input type="hidden" name="user_id" value="<%= @user.id %>">
 <% end %>
+
+  <div class="answer_status_box">
+  <% if @answer_status %>
+    <p class="answer_status"> Correct! <%= @former_right_user.name if @former_right_user%> </p>
+  <% elsif @answer_status == false %>
+    <p class="answer_status"> Wrong! It was <%= @former_right_user.name if @former_right_user%> </p>
+  <% end %>
+  </div>
+  <% if @attempts > 0 %>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-text="I got <%=100*@score/@attempts %>% right! How many can you get? #WhoTweetedIt">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <% else %>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Awesome game. Play it! #WhoTweetedIt">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <% end %>
 </div>
+
+<div class="big_space"></div>
 
 <form action="<%= home_new_path %>" method="post">
   <br>
@@ -93,12 +110,4 @@
   <%= label_tag(:name, "Enter a name above to delete") %>
   <%= text_field_tag(:name, "(ex: Adam Moelis)") %>
   <%= submit_tag "Delete" %>
-<% end %>
-
-<% if @attempts > 0 %>
-  <a href="https://twitter.com/share" class="twitter-share-button" data-text="I got <%=100*@score/@attempts %>% right! How many can you get? #WhoTweetedIt">Tweet</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<% else %>
-  <a href="https://twitter.com/share" class="twitter-share-button" data-text="Awesome game. Play it! #WhoTweetedIt">Tweet</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <% end %>
