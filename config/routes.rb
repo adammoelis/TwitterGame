@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
+  post 'home/index', to: "home#update_score"
   post 'home/new'
   get 'home/new'
   patch 'home/update'

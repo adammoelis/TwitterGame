@@ -14,7 +14,7 @@
 </div>
 
 <div class = "wrapper">
-<%= form_for @user do |f| %>
+<%= form_tag("/home/index", method: "post") do |f| %>
 
   <span>
     <p>Your Score</p>
@@ -34,8 +34,6 @@
     <input class="score" type="text" name="percentage" value="N/A" readonly>
   <% end %>
   </span>
-
-
   <% if @attempts > 0 %>
     <% case 100*@score/@attempts %>
       <% when 75..100 %>
@@ -64,26 +62,23 @@
     <p>Feedback</p>
     <input class="score" type="text"  value="None Wrong ... yet" readonly>
     </span>
-
   <% end %>
+
 
   <br>
   <br>
   <div class="all_buttons">
-
-
-  <% @users.all.each do |user| %>
-  <div id="name_button" class="<%= user.slug %>">
-    <input type="submit" class="myButton" name="name" value="<%= user.name %>">
-    <div id="hidden" class ="<%= user.slug %>_img">
-      <%=image_tag("#{user.slug}/#{Dir.entries("app/assets/images/#{user.slug}").drop(2).sample}", alt: "#{user.name}")%>
+    <% @users.all.each do |user| %>
+    <div id="name_button" class="<%= user.slug %>">
+      <input type="submit" class="myButton" name="name" value="<%= user.name %>">
+      <div id="hidden" class ="<%= user.slug %>_img">
+        <%=image_tag("#{user.slug}/#{user.select_random_image}", alt: "#{user.name}")%>
+      </div>
     </div>
-  </div>
-
-  <% end %>
+    <% end %>
   </div>
   <br>
-
+  <input type="hidden" name="user_id" value="<%= @user.id %>">
 <% end %>
 </div>
 

@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
+  include Key
   protect_from_forgery with: :null_session
-  http_basic_authenticate_with name: "dhhh", password: "secret", except: [:index, :show]
+  http_basic_authenticate_with name: USERNAME, password: PASSWORD, except: [:index, :show]
 
   def index
     @users = User.all
@@ -8,8 +9,6 @@ class HomeController < ApplicationController
     @score = params[:score].to_i if params[:score]
     @attempts = params[:attempts].to_i if params[:attempts]
     @attempts ||= 0
-    # @score = session[:tmp_score] if session[:tmp_score]
-    # @attempts = session[:tmp_attempts] if session[:tmp_attempts]
     render 'home/index'
   end
 
@@ -27,19 +26,19 @@ class HomeController < ApplicationController
     redirect_to '/home/index'
   end
 
-  # def update
-  #   binding.pry
-  #   if params[:name] == @user.name
-  #     @score = params[:score].to_i + 1
-  #   else
-  #     @score = params[:score].to_i
-  #   end
-  #   @attempts = params[:attempts].to_i + 1
-  #   @users = User.all
-  #   # session[:tmp_score] = @score
-  #   # session[:tmp_attempts] = @attempts
-  #   redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts
-  # end
+  def update_score
+    # binding.pry
+    @user = User.find(params[:user_id])
+    if params[:name] == @user.name
+      @score = params[:score].to_i + 1
+    else
+      @score = params[:score].to_i
+    end
+    @attempts = params[:attempts].to_i + 1
+    @users = User.all
+    render 'home/index'
+    # redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts
+  end
 
 
   private

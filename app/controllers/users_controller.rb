@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  include Key
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show, :update]
+  http_basic_authenticate_with name: USERNAME, password: PASSWORD, except: [:index, :show, :update]
 
 
   # GET /users
@@ -39,9 +40,8 @@ class UsersController < ApplicationController
     end
     @attempts = params[:attempts].to_i + 1
     @users = User.all
-    # session[:tmp_score] = @score
-    # session[:tmp_attempts] = @attempts
-    redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts
+    render 'home/index'
+    # redirect_to :controller => 'home', :action => 'index', :score => @score, :attempts => @attempts
   end
 
   # DELETE /users/1
