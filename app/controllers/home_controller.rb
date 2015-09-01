@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   protect_from_forgery with: :null_session
-  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  http_basic_authenticate_with name: "dhhh", password: "secret", except: [:index, :show]
 
   def index
     @users = User.all

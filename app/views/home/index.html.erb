@@ -35,6 +35,38 @@
   <% end %>
   </span>
 
+
+  <% if @attempts > 0 %>
+    <% case 100*@score/@attempts %>
+      <% when 75..100 %>
+      <span>
+      <p>Feedback</p>
+      <input class="score great" type="text"  value="Great Job!" readonly>
+      </span>
+    <% when 50...75 %>
+      <span>
+      <p>Feedback</p>
+      <input class="score good" type="text"  value="Okay Job" readonly>
+      </span>
+    <% when 25...50 %>
+      <span>
+      <p>Status</p>
+      <input class="score bad" type="text"  value="You KINDA suck" readonly>
+      </span>
+    <% else %>
+      <span>
+      <p>Feedback</p>
+      <input class="score terrible" type="text"  value="You REALLY suck" readonly>
+      </span>
+    <% end %>
+  <% else %>
+    <span>
+    <p>Feedback</p>
+    <input class="score" type="text"  value="None Wrong ... yet" readonly>
+    </span>
+
+  <% end %>
+
   <br>
   <br>
   <div class="all_buttons">
@@ -55,7 +87,7 @@
 <% end %>
 </div>
 
-<form action="new" method="post">
+<form action="<%= home_new_path %>" method="post">
   <br>
   <label for="username"> Enter a new Twitter handle</label>
   <input id="username" type="text" name="username" value="(ex: kingjames)">
