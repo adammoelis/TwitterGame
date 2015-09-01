@@ -44,7 +44,7 @@ class Tweet < ActiveRecord::Base
 
   def self.filter_tweets(username)
     @filtered_tweets = get_tweets(username).delete_if do |tweet|
-      tweet =~ /^@|http/
+      tweet =~ /^@|http|#{Regexp.quote(username)}/
     end
   end
 end
