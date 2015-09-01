@@ -4,6 +4,9 @@
 
 @import url(https://fonts.googleapis.com/css?family=Indie+Flower);
 
+
+
+
 h1 {
 	text-align: center;
 	font-size: 100px;
@@ -62,23 +65,19 @@ h2 {
 
 
 .score {
-	display: block;
-  margin: 0;
-  font-family: sans-serif;
-  font-size: 18px;
+	display: inline;
+	text-align: center;
+	font-family: 'Indie Flower', cursive;
+  font-size: 2em;
   appearance: none;
   box-shadow: none;
   border-radius: none;
 	box-shadow: 0 0 5px 1px #969696;
 }
 
-img {
-
-}
-
 
 #name_button {
-	border: solid;
+	// border: solid;
 	height: 150px;
 	width: 200px;
 	border-radius:18px;
@@ -88,29 +87,29 @@ img {
 }
 
 #hidden {
-	overflow: hidden;
+	// overflow: hidden;
 	position: relative;
 	position: absolute;
-	right: -50px;
-	top: 50px;
+	right: 2000px;
+	top: 400px;
 	height: 250px;
 	width: 250px;
 	transition: 1.0s;
 }
 
 .donald_j_trump {
-	border: solid red;
-	background-color: red;
+	// border: solid red;
+	// background-color: red;
 }
 
 .hillary_clinton {
-	border: solid red;
-	background-color: red;
+	// border: solid red;
+	// background-color: red;
 }
 
-.dj_pauly_d {
-	border: solid red;
-	background-color: red;
+img {
+	height: 250px;
+	width: 250px;
 }
 
 
@@ -119,8 +118,8 @@ img {
 		overflow: visible;
 		height: 100px;
 		width: 100px;
-		right: 500px;
-		top: 500px;
+		right: 1300px;
+		top: 350px;
 
 }
 
@@ -129,8 +128,8 @@ img {
 		overflow: visible;
 		height: 100px;
 		width: 100px;
-		right: 150px;
-		top: 50px;
+		right: 1100px;
+		top: 350px;
 }
 
 .dj_pauly_d .myButton:hover + div#hidden.dj_pauly_d_img {
@@ -138,6 +137,11 @@ img {
 		overflow: visible;
 		height: 100px;
 		width: 100px;
-		right: 150px;
-		top: 50px;
+		right: 900px;
+		top: 350px;
+}
+
+span {
+	float: left;
+	padding: 90px;
 }

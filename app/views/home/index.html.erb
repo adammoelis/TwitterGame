@@ -13,11 +13,33 @@
 <h2><%= @user.tweets.sample.text %></h2>
 </div>
 
-<br>
-<br>
-
 <div class = "wrapper">
 <%= form_for @user do |f| %>
+
+  <span>
+  <p>Your Score</p>
+  <input class="score" type="text" name="score" value="<%= @score %>" readonly>
+  </span>
+
+  <span>
+  <p>Your Attempts</p>
+  <input class="score" type="text" name="attempts" value="<%= @attempts %>" readonly>
+  </span>
+
+  <span>
+  <p>Percentage</p>
+  <% if @attempts >0 %>
+    <input class="score" type="text" name="percentage" value="<%= 100*@score/@attempts %>%" readonly>
+  <% else %>
+    <input class="score" type="text" name="percentage" value="N/A" readonly>
+  <% end %>
+  </span>
+
+  <br>
+  <br>
+  <div class="all_buttons">
+
+
   <% @users.all.each do |user| %>
   <div id="name_button" class="<%= user.slug %>">
     <input type="submit" class="myButton" name="name" value="<%= user.name %>">
@@ -27,19 +49,9 @@
   </div>
 
   <% end %>
+  </div>
   <br>
-  <p>Your Score</p>
-  <input class="score" type="text" name="score" value="<%= @score %>" readonly>
-  <br>
-  <p>Your Attempts</p>
-  <input class="score" type="text" name="attempts" value="<%= @attempts %>" readonly>
-  <br>
-  <p>Percentage</p>
-  <% if @attempts >0 %>
-    <input class="score" type="text" name="percentage" value="<%= 100*@score/@attempts %>%" readonly>
-  <% else %>
-    <input class="score" type="text" name="percentage" value="N/A" readonly>
-  <% end %>
+
 <% end %>
 </div>
 
