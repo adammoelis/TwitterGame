@@ -130,7 +130,7 @@ img {
 		overflow: visible;
 		height: 100px;
 		width: 100px;
-		right: 950px;
+		right: 900px;
 		top: 650px;
 
 }
@@ -140,7 +140,7 @@ img {
 		overflow: visible;
 		height: 100px;
 		width: 100px;
-		right: 750px;
+		right: 700px;
 		top: 650px;
 }
 
@@ -149,7 +149,7 @@ img {
 		overflow: visible;
 		height: 100px;
 		width: 100px;
-		right: 550px;
+		right: 500px;
 		top: 650px;
 }
 
@@ -215,4 +215,10 @@ span {
 .social span {
 	display: inline-block;
 	width: 40px;
+}
+
+.label {
+	font-family: 'Indie Flower', cursive;
+	font-size: 2em;
+	margin: 5px;
 }

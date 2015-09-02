@@ -15,54 +15,55 @@
 
 <div class = "wrapper">
 <%= form_tag("/home/index", method: "post") do |f| %>
+  <div class="scoreboard">
+    <span>
+      <p class="label">Score</p>
+      <input class="score" type="text" name="score" value="<%= @score %>" readonly>
+    </span>
 
-  <span>
-    <p>Score</p>
-    <input class="score" type="text" name="score" value="<%= @score %>" readonly>
-  </span>
+    <span>
+      <p class="label">Attempts</p>
+      <input class="score" type="text" name="attempts" value="<%= @attempts %>" readonly>
+    </span>
 
-  <span>
-    <p>Attempts</p>
-    <input class="score" type="text" name="attempts" value="<%= @attempts %>" readonly>
-  </span>
-
-  <span>
-  <p>Percentage</p>
-  <% if @attempts >0 %>
-    <input class="score" type="text" name="percentage" value="<%= 100*@score/@attempts %>%" readonly>
-  <% else %>
-    <input class="score" type="text" name="percentage" value="N/A" readonly>
-  <% end %>
-  </span>
-  <% if @attempts > 0 %>
-    <% case 100*@score/@attempts %>
-      <% when 75..100 %>
-      <span>
-      <p>Feedback</p>
-      <input class="score great" type="text"  value="Great Job!" readonly>
-      </span>
-    <% when 50...75 %>
-      <span>
-      <p>Feedback</p>
-      <input class="score good" type="text"  value="Okay Job" readonly>
-      </span>
-    <% when 25...50 %>
-      <span>
-      <p>Feedback</p>
-      <input class="score bad" type="text"  value="You KINDA suck" readonly>
-      </span>
+    <span>
+    <p class="label">Percentage</p>
+    <% if @attempts >0 %>
+      <input class="score" type="text" name="percentage" value="<%= 100*@score/@attempts %>%" readonly>
+    <% else %>
+      <input class="score" type="text" name="percentage" value="N/A" readonly>
+    <% end %>
+    </span>
+    <% if @attempts > 0 %>
+      <% case 100*@score/@attempts %>
+        <% when 75..100 %>
+        <span>
+        <p class="label">Feedback</p>
+        <input class="score great" type="text"  value="Great Job!" readonly>
+        </span>
+      <% when 50...75 %>
+        <span>
+        <p class="label">Feedback</p>
+        <input class="score good" type="text"  value="Okay Job" readonly>
+        </span>
+      <% when 25...50 %>
+        <span>
+        <p class="label">Feedback</p>
+        <input class="score bad" type="text"  value="You KINDA suck" readonly>
+        </span>
+      <% else %>
+        <span>
+        <p class="label">Feedback</p>
+        <input class="score terrible" type="text"  value="You REALLY suck" readonly>
+        </span>
+      <% end %>
     <% else %>
       <span>
-      <p>Feedback</p>
-      <input class="score terrible" type="text"  value="You REALLY suck" readonly>
+      <p class="label">Feedback</p>
+      <input class="score" type="text"  value="None Wrong ... yet" readonly>
       </span>
     <% end %>
-  <% else %>
-    <span>
-    <p>Feedback</p>
-    <input class="score" type="text"  value="None Wrong ... yet" readonly>
-    </span>
-  <% end %>
+  </div>
 
 
   <br>
