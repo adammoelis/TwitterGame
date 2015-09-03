@@ -8,7 +8,7 @@
 
 
 
-Tweet.fetch_tweets_for("adammoelis")
+
 
 
 
