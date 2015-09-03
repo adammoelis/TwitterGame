@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 /app/models/concerns/key.rb
+
+# Ignore application configuration
+/config/application.yml
