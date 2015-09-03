@@ -2,8 +2,6 @@
   <h1>Who Tweeted It?</h1>
 </div>
 
-
-
 <br>
 <% @user = @users.sample %>
 <% @user.name %>
@@ -18,24 +16,24 @@
   <div class="scoreboard">
     <span>
       <p class="label">Score</p>
-      <input class="score" type="text" name="score" value="<%= @score %>" readonly>
+      <input class="score" type="text" name="score" value="<%= @game.score %>" readonly>
     </span>
 
     <span>
       <p class="label">Attempts</p>
-      <input class="score" type="text" name="attempts" value="<%= @attempts %>" readonly>
+      <input class="score" type="text" name="attempts" value="<%= @game.attempts %>" readonly>
     </span>
 
     <span>
     <p class="label">Percentage</p>
-    <% if @attempts >0 %>
-      <input class="score" type="text" name="percentage" value="<%= 100*@score/@attempts %>%" readonly>
+    <% if @game.attempts >0 %>
+      <input class="score" type="text" name="percentage" value="<%= @game.display_percentage %>%" readonly>
     <% else %>
       <input class="score" type="text" name="percentage" value="N/A" readonly>
     <% end %>
     </span>
-    <% if @attempts > 0 %>
-      <% case 100*@score/@attempts %>
+    <% if @game.attempts > 0 %>
+      <% case 100*@game.score/@game.attempts %>
         <% when 75..100 %>
         <span>
         <p class="label">Feedback</p>
@@ -91,9 +89,9 @@
   </div>
 
     <div class="social">
-      <% if @attempts > 0 %>
+      <% if @game.attempts > 0 %>
       <span class="twitter">
-          <a href="https://twitter.com/share" class="twitter-share-button" data-text="I got <%=100*@score/@attempts %>% right! How many can you get? #WhoTweetedIt">Tweet</a>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-text="I got <%= @game.display_percentage %> right! How many can you get? #WhoTweetedIt">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </span>
       <% else %>
