@@ -26,46 +26,20 @@
 
     <span>
     <p class="label">Percentage</p>
-    <% if @game.attempts >0 %>
-      <input class="score" type="text" name="percentage" value="<%= @game.display_percentage %>%" readonly>
-    <% else %>
-      <input class="score" type="text" name="percentage" value="N/A" readonly>
-    <% end %>
+      <input class="score" type="text" name="percentage" value="<%= @game.display_percentage %>" readonly>
+
     </span>
-    <% if @game.attempts > 0 %>
-      <% case 100*@game.score/@game.attempts %>
-        <% when 75..100 %>
+
         <span>
         <p class="label">Feedback</p>
-        <input class="score great" type="text"  value="Great Job!" readonly>
+        <input class="score <%= @game.feedback_class_type %>" type="text"  value="<%= @game.feedback_value %>" readonly>
         </span>
-      <% when 50...75 %>
-        <span>
-        <p class="label">Feedback</p>
-        <input class="score good" type="text"  value="Okay Job" readonly>
-        </span>
-      <% when 25...50 %>
-        <span>
-        <p class="label">Feedback</p>
-        <input class="score bad" type="text"  value="You KINDA suck" readonly>
-        </span>
-      <% else %>
-        <span>
-        <p class="label">Feedback</p>
-        <input class="score terrible" type="text"  value="You REALLY suck" readonly>
-        </span>
-      <% end %>
-    <% else %>
-      <span>
-      <p class="label">Feedback</p>
-      <input class="score" type="text"  value="None Wrong ... yet" readonly>
-      </span>
-    <% end %>
+
   </div>
 
+  <br>
+  <br>
 
-  <br>
-  <br>
   <div class="all_buttons">
     <% @users.all.each do |user| %>
     <div id="name_button" class="<%= user.slug %>">
@@ -81,11 +55,10 @@
 <% end %>
 
   <div class="answer_status_box">
-  <% if @answer_status %>
-    <p class="answer_status"> Correct! <%= @former_right_user.name if @former_right_user%> </p>
-  <% elsif @answer_status == false %>
-    <p class="answer_status"> Wrong! It was <%= @former_right_user.name if @former_right_user%> </p>
-  <% end %>
+
+    <p class="answer_status"> <%= @game.display_after_answer %></p>
+
+
   </div>
 
     <div class="social">

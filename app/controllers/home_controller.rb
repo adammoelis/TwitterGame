@@ -6,8 +6,6 @@ class HomeController < ApplicationController
   def index
     @game = Game.new(0,0)
     @users = User.all
-    # @score ||= 0
-    # @attempts ||= 0
     render 'home/index'
   end
 
@@ -26,8 +24,6 @@ class HomeController < ApplicationController
   end
 
   def update_score
-    # binding.pry
-
     @former_right_user = User.find(params[:user_id])
     if params[:name] == @former_right_user.name
       @answer_status = true
@@ -36,8 +32,9 @@ class HomeController < ApplicationController
       @answer_status = false
       @score = params[:score].to_i
     end
-    # @game.attempts = params[:attempts].to_i + 1
     @game = Game.new(@score, params[:attempts].to_i + 1)
+    @game.right_person = @former_right_user
+    @game.answer_status = @answer_status
     @users = User.all
     render 'home/index'
   end
