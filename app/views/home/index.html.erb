@@ -62,17 +62,12 @@
   </div>
 
     <div class="social">
-      <% if @game.attempts > 0 %>
+
       <span class="twitter">
-          <a href="https://twitter.com/share" class="twitter-share-button" data-text="I got <%= @game.display_percentage %> right! How many can you get? #WhoTweetedIt">Tweet</a>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= @game.tweet_button_message%>">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </span>
-      <% else %>
-      <span class="twitter">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-text="How many can you get? #WhoTweetedIt">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-      </span>
-      <% end %>
+
       <span class="Facebook">
           <iframe src="https://www.facebook.com/plugins/like.php?href=https://gist.github.com/thebigreason/1296097&amp;show_faces=false&amp;layout=button_count" scrolling="no" frameborder="0" style="height: 21px; width: 100px" allowTransparency="true"></iframe>
       </span>

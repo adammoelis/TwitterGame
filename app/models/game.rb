@@ -59,6 +59,14 @@ class Game
       end
     end
 
+    def tweet_button_message
+      if percentage
+        "I got #{display_percentage} right! How many can you get? #WhoTweetedIt"
+      else
+        "How many can you get? #WhoTweetedIt"
+      end
+    end
+
 
 
 
