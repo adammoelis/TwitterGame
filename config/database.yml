@@ -3,7 +3,6 @@
     encoding: unicode
     database: twittergame_development
     pool: 5
-    host: localhost
     username:
     password:
 
@@ -13,6 +12,5 @@
     encoding: unicode
     database: twittergame_test
     pool: 5
-    host: localhost
     username:
     password:
