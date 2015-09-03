@@ -1,16 +1,16 @@
- development:
-    adapter: postgresql
-    encoding: unicode
-    database: twittergame_development
-    pool: 5
-    username:
-    password:
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: twittergame_development
+  pool: 5
+  username:
+  password:
 
 
-  test:
-    adapter: postgresql
-    encoding: unicode
-    database: twittergame_test
-    pool: 5
-    username:
-    password:
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: twittergame_test
+  pool: 5
+  username:
+  password:
