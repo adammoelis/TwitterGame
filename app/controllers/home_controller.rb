@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   include Key
   protect_from_forgery with: :null_session
-  http_basic_authenticate_with name: USERNAME, password: PASSWORD, except: [:index, :show]
+  http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"], except: [:index, :show]
 
   def index
     @game = Game.new(0,0)
