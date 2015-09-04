@@ -67,6 +67,10 @@ class Game
       end
     end
 
+    def start_over
+      "Start Over" if attempts > 0
+    end
+
 
 
 
