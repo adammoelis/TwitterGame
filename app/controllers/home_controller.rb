@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  include Key
+  # include Key
   protect_from_forgery with: :null_session
   http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"], except: [:index, :show, :update_score]
 

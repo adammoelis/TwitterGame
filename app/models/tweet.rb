@@ -1,6 +1,6 @@
 
 class Tweet < ActiveRecord::Base
-  include Key
+  # include Key
   belongs_to :user
 
   @@client = Twitter::REST::Client.new do |config|
