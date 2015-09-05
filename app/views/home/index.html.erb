@@ -1,4 +1,4 @@
-<div class="navbar">
+
 
 
 
@@ -75,7 +75,7 @@
 
     <div class="social">
 
-      <span class="twitter">
+      <span class="twitter_share">
           <a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= @game.tweet_button_message%>">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </span>
@@ -106,14 +106,14 @@
 
 <p>
 
-			<a class="facebook-before"><span class="fontawesome-facebook"></span></a>
+			<a class="facebook-before" href="/auth/:provider/callback"><span class="fontawesome-facebook"></span></a>
 			<button class="facebook">Login Using Facbook</button>
 
 		</p>
 
 		<p>
 
-			<a class="twitter-before"><span class="fontawesome-twitter"></span></a>
+			<a class="twitter-before" href="/auth/twitter/"><span class="fontawesome-twitter"></span></a>
 			<button class="twitter">Login Using Twitter</button>
 
 		</p>

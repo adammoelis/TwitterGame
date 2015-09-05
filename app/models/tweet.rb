@@ -2,6 +2,7 @@
 class Tweet < ActiveRecord::Base
   # include Key
   belongs_to :user
+  has_many :accounts, through: :user
 
   @@client = Twitter::REST::Client.new do |config|
     config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]

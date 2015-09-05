@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
   has_many :user_accounts
   has_many :users, through: :user_accounts
+  has_many :tweets, through: :users
 
   def self.find_or_create_from_auth_hash(auth_hash)
     account = where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create

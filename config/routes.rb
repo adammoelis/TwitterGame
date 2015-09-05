@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get 'home/update'
   patch 'home/remove', to: "users#remove"
   get '/auth/:provider/callback', to: 'sessions#create'
- 
+  post '/logout', to: "sessions#logout"
+
 
   resources :users
   resources :tweets

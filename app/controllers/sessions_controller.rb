@@ -3,8 +3,14 @@ class SessionsController < ApplicationController
   def create
     @account = Account.find_or_create_from_auth_hash(auth_hash)
     session[:account_id] = @account.id
-    # self.current_account = @account
     redirect_to '/'
+  end
+
+  def logout
+    session[:account_id] = nil
+    redirect_to '/'
+
+
   end
 
   protected

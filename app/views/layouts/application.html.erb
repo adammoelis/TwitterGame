@@ -27,7 +27,10 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <% if current_account %>
-<p>Signed in as <%= current_account.name %></p>
+  Signed in as <%= current_account.name %>
+  <%= link_to "Log Out", {controller: "sessions", action: "logout"}, method: :post %>
+<% else %>
+  <p>Click below to login</p>
 <% end %>
 
 <%= yield %>
