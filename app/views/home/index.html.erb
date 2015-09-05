@@ -3,7 +3,7 @@
 
 
   <div class="title">
-    <h1>Who Tweeted It?</h1>
+    <h1 class="title_text">Who Tweeted It?</h1>
   </div>
 
   <br>
@@ -13,7 +13,7 @@
   <br>
 
   <div class="tweet">
-    <h2><%= @user.tweets.sample.text %></h2>
+    <h2 class="tweet_text"><%= @user.tweets.sample.text %></h2>
   </div>
 
 
@@ -73,31 +73,4 @@
 
   </div>
 
-
 </div>
-
-
-<div class="big_space"></div>
-
-<form action=<%= home_add_path %> method="post">
-  <input name="_method" type="hidden" value="patch" />
-  <br>
-  <label for="username"> Enter a new Twitter handle</label>
-  <input id="username" type="text" name="username" value="(ex: kingjames)">
-  <input type="submit" value="Submit">
-</form>
-
-<%= form_for @user, :url => {:action => "remove", :controller => "users" }, :method => :patch do  %>
-  <%= label_tag(:name, "Enter a name above to delete") %>
-  <%= text_field_tag(:name, "(ex: Adam Moelis)") %>
-  <%= submit_tag "Delete" %>
-<% end %>
-
-
-<% if current_account %>
-
-  <%= link_to "Play Custom Game!", {controller: "home", action: "custom"}, method: :get %>
-
-<% else %>
-
-<% end %>
