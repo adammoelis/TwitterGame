@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
 
   def remove
-    binding.pry
     if User.where("name Like ?", params[:name]).first
       @user = User.where("name Like ?", params[:name]).first
       @user.remove_from_default

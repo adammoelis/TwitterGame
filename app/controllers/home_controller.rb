@@ -11,17 +11,14 @@ class HomeController < ApplicationController
 
   def new
     @username = params[:username]
-    binding.pry
     begin
       @name = Tweet.get_name(@username)
     rescue
     else
       if User.find_by_name(@name)
-        binding.pry
         @user = User.find_by_name(@name)
         @user.add_to_default_game
       else
-        binding.pry
         @user = Tweet.fetch_tweets_for(@username)
         @user.add_to_default_game
       end
