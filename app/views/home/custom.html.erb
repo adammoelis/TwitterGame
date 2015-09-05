@@ -3,7 +3,7 @@
 
     <% if current_account.users.size >=2 %>
         <div class="title">
-          <h1>Who Tweeted It?</h1>
+          <h1 class="title_text">Who Tweeted It?</h1>
         </div>
 
         <br>
@@ -13,7 +13,7 @@
         <br>
 
         <div class="tweet">
-          <h2><%= @user.tweets.sample.text %></h2>
+          <h2 class="tweet_text"><%= @user.tweets.sample.text %></h2>
         </div>
 
 
@@ -115,7 +115,6 @@
 
     <% end %>
 
-    <%= link_to "Return to Default Game!", {controller: "home", action: "index"}, method: :get %>
 
 <% else %>
 
