@@ -12,11 +12,11 @@ class Tweet < ActiveRecord::Base
   end
 
 
-  def self.fetch_tweets_for(username)
-    if filter_tweets(username).size > 0
-      user = User.create(name: get_name(username))
+  def self.fetch_tweets_for(username, client=@@client)
+    if filter_tweets(username, client).size > 0
+      user = User.create(name: get_name(username, client))
       user.make_img_folder
-      filter_tweets(username).each do |tweet|
+      filter_tweets(username, client).each do |tweet|
         user.tweets.create(text: tweet)
       end
       user
@@ -24,11 +24,11 @@ class Tweet < ActiveRecord::Base
     end
   end
 
-  def self.get_name(username)
-    @@client.user(username).name
+  def self.get_name(username, client=@@client)
+    client.user(username).name
   end
 
-  def self.get_tweets(username)
+  def self.get_tweets(username, client=@@client)
     get_all_tweets(username).map {|tweet| tweet.text.gsub(/"/, '')}
   end
 
@@ -38,15 +38,15 @@ class Tweet < ActiveRecord::Base
     response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
   end
 
-  def self.get_all_tweets(username)
+  def self.get_all_tweets(username, client=@@client)
     collect_with_max_id do |max_id|
       options = {count: 200, include_rts: false}
       options[:max_id] = max_id unless max_id.nil?
-      @@client.user_timeline(username, options)
+      client.user_timeline(username, options)
     end
   end
 
-  def self.filter_tweets(username)
+  def self.filter_tweets(username, client=@@client)
     @filtered_tweets = get_tweets(username).delete_if do |tweet|
       tweet =~ /^@|http|#{Regexp.quote(username)}/
     end
