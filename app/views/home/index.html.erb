@@ -18,32 +18,33 @@
 
 
   <%= form_tag("/home/index", method: "post") do |f| %>
+  <div class="row"
     <div class="scoreboard">
-      <span>
+      <div class="col-md-3">
         <p class="label">Score</p>
         <input class="score" type="text" name="score" value="<%= @game.score %>" readonly>
-      </span>
+      </div>
 
-      <span>
+      <div class="col-md-3">
         <p class="label">Attempts</p>
         <input class="score" type="text" name="attempts" value="<%= @game.attempts %>" readonly>
-      </span>
+      </div>
 
-      <span>
+      <div class="col-md-3">
       <p class="label">Percentage</p>
         <input class="score" type="text" name="percentage" value="<%= @game.display_percentage %>" readonly>
 
-      </span>
+      </div>
 
-          <span>
+          <div class="col-md-3">
           <p class="label">Feedback</p>
           <input class="score <%= @game.feedback_class_type %>" type="text"  value="<%= @game.feedback_value %>" readonly>
-          </span>
+        </div>
 
 
     </div>
   </div>
-  <div class = "wrapper">
+  <div class="container">
 
   <br>
   <br>
