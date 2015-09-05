@@ -12,14 +12,16 @@ class Tweet < ActiveRecord::Base
   end
 
 
-
   def self.fetch_tweets_for(username)
-    user = User.create(name: get_name(username))
-    user.make_img_folder
-    filter_tweets(username).each do |tweet|
-      user.tweets.create(text: tweet)
+    if filter_tweets(username).size > 0
+      user = User.create(name: get_name(username))
+      user.make_img_folder
+      filter_tweets(username).each do |tweet|
+        user.tweets.create(text: tweet)
+      end
+      user
+    else
     end
-    user
   end
 
   def self.get_name(username)

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   patch 'home/remove', to: "users#remove"
   get '/auth/:provider/callback', to: 'sessions#create'
   post '/logout', to: "sessions#logout"
+  get '/game', to: "home#custom"
+  post '/game', to: "home#add_to_custom"
 
 
   resources :users

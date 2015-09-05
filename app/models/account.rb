@@ -1,5 +1,5 @@
 class Account < ActiveRecord::Base
-  has_many :user_accounts
+  has_many :user_accounts, dependent: :destroy
   has_many :users, through: :user_accounts
   has_many :tweets, through: :users
 
@@ -17,8 +17,12 @@ class Account < ActiveRecord::Base
       config.access_token        = token
       config.access_token_secret = secret
     end
-
   end
+
+  def add_user(user_object)
+    self.users << user_object unless self.users.include?(user_object)
+  end
+
 
 
 end
