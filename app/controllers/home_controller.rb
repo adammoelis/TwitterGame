@@ -34,7 +34,6 @@ class HomeController < ApplicationController
   end
 
   def update_score
-    binding.pry
     @former_right_user = User.find(params[:user_id])
     if params[:name] == @former_right_user.name
       @answer_status = true
@@ -50,11 +49,26 @@ class HomeController < ApplicationController
     render 'home/index'
   end
 
+  def update_custom_score
+    @former_right_user = User.find(params[:user_id])
+    if params[:name] == @former_right_user.name
+      @answer_status = true
+      @score = params[:score].to_i + 1
+    else
+      @answer_status = false
+      @score = params[:score].to_i
+    end
+    @game = Game.new(@score, params[:attempts].to_i + 1)
+    @game.right_person = @former_right_user
+    @game.answer_status = @answer_status
+    @users = User.all
+    render '/home/custom'
+  end
+
   def update_default
   end
 
   def add_to_custom
-    binding.pry
     @username = params[:username]
     begin
       @name = Tweet.get_name(@username)
@@ -62,20 +76,21 @@ class HomeController < ApplicationController
     else
       if User.find_by_name(@name)
         @user = User.find_by_name(@name)
-        binding.pry
         current_account.add_user(@user)
       else
         @user = Tweet.fetch_tweets_for(@username)
-        binding.pry
         current_account.add_user(@user)
       end
     end
-    binding.pry
     redirect_to '/game'
+  end
 
-    # See if username is already in the database, if it is, assign it to the current_account
-    # if it's not, fetch tweets for it, using the current_account API key
-    # add the username to the Account
+  def remove_from_custom
+    if User.where("name Like ?", params[:name]).first
+      @user = User.where("name Like ?", params[:name]).first
+      current_account.remove_user(@user)
+    end
+    redirect_to '/game'
   end
 
 

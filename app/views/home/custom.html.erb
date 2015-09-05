@@ -1,130 +1,141 @@
 
+<% if current_account %>
+
+    <% if current_account.users.size >=2 %>
+        <div class="title">
+          <h1>Who Tweeted It?</h1>
+        </div>
+
+        <br>
+        <% @users = current_account.users %>
+        <% @user = @users.sample %>
+        <% @user.name %>
+        <br>
+
+        <div class="tweet">
+          <h2><%= @user.tweets.sample.text %></h2>
+        </div>
 
 
-<% if current_account.users.size >=2 %>
-    <div class="title">
-      <h1>Who Tweeted It?</h1>
-    </div>
-
-    <br>
-    <% @users = current_account.users %>
-    <% @user = @users.sample %>
-    <% @user.name %>
-    <br>
-
-    <div class="tweet">
-      <h2><%= @user.tweets.sample.text %></h2>
-    </div>
-
-
-    <%= form_tag("/home/index", method: "post") do |f| %>
-      <div class="scoreboard">
-        <span>
-          <p class="label">Score</p>
-          <input class="score" type="text" name="score" value="<%= @game.score %>" readonly>
-        </span>
-
-        <span>
-          <p class="label">Attempts</p>
-          <input class="score" type="text" name="attempts" value="<%= @game.attempts %>" readonly>
-        </span>
-
-        <span>
-        <p class="label">Percentage</p>
-          <input class="score" type="text" name="percentage" value="<%= @game.display_percentage %>" readonly>
-
-        </span>
-
+        <%= form_tag("/game", method: "patch") do |f| %>
+          <div class="scoreboard">
             <span>
-            <p class="label">Feedback</p>
-            <input class="score <%= @game.feedback_class_type %>" type="text"  value="<%= @game.feedback_value %>" readonly>
+              <p class="label">Score</p>
+              <input class="score" type="text" name="score" value="<%= @game.score %>" readonly>
             </span>
 
+            <span>
+              <p class="label">Attempts</p>
+              <input class="score" type="text" name="attempts" value="<%= @game.attempts %>" readonly>
+            </span>
 
-      </div>
-    </div>
-    <div class = "wrapper">
+            <span>
+            <p class="label">Percentage</p>
+              <input class="score" type="text" name="percentage" value="<%= @game.display_percentage %>" readonly>
 
-    <br>
-    <br>
+            </span>
 
-    <div class="all_buttons">
-      <% @users.all.each do |user| %>
-      <div id="name_button" class="<%= user.slug %>">
-        <input type="submit" class="myButton" name="name" value="<%= user.name %>">
-        <div id="hidden" class ="<%= user.slug %>_img">
-          <%=image_tag("#{user.slug}/#{user.select_random_image}", alt: "#{user.name}")%>
+                <span>
+                <p class="label">Feedback</p>
+                <input class="score <%= @game.feedback_class_type %>" type="text"  value="<%= @game.feedback_value %>" readonly>
+                </span>
+
+
+          </div>
+        </div>
+        <div class = "wrapper">
+
+        <br>
+        <br>
+
+        <div class="all_buttons">
+          <% @users.all.each do |user| %>
+          <div id="name_button" class="<%= user.slug %>">
+            <input type="submit" class="myButton" name="name" value="<%= user.name %>">
+            <div id="hidden" class ="<%= user.slug %>_img">
+              <%=image_tag("#{user.slug}/#{user.select_random_image}", alt: "#{user.name}")%>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <br>
+        <input type="hidden" name="user_id" value="<%= @user.id %>">
+      <% end %>
+
+        <div class="answer_status_box">
+
+          <p class="answer_status"> <%= @game.display_after_answer %></p>
+          <% if @game.start_over %>
+            <%= link_to "#{@game.start_over}", home_index_path, class: "start_over" %>
+          <% end %>
+
+
+
+        </div>
+
+          <div class="social">
+
+            <span class="twitter_share">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= @game.tweet_button_message%>">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </span>
+
+            <span class="Facebook">
+                <iframe src="https://www.facebook.com/plugins/like.php?href=https://gist.github.com/thebigreason/1296097&amp;show_faces=false&amp;layout=button_count" scrolling="no" frameborder="0" style="height: 21px; width: 100px" allowTransparency="true"></iframe>
+                <div class="fb-share-button" data-href="<%= home_index_path %>" data-layout="button_count"></div>
+            </span>
         </div>
       </div>
-      <% end %>
-    </div>
-    <br>
-    <input type="hidden" name="user_id" value="<%= @user.id %>">
-  <% end %>
 
-    <div class="answer_status_box">
 
-      <p class="answer_status"> <%= @game.display_after_answer %></p>
-      <% if @game.start_over %>
-        <%= link_to "#{@game.start_over}", home_index_path, class: "start_over" %>
+      <div class="big_space"></div>
+
+      <%= form_tag("/game", method: "post") do %>
+      <%= label_tag(:username, "Enter a Twitter handle to add to the game:") %>
+      <%= text_field_tag(:username) %>
+      <%= submit_tag("Submit") %>
       <% end %>
 
+      <%= form_tag("/game", method: "delete") do %>
+      <%= label_tag(:name, "Enter name to remove a handle from the game:") %>
+      <%= text_field_tag(:name) %>
+      <%= submit_tag("Submit") %>
+      <% end %>
 
 
-    </div>
 
-      <div class="social">
-
-        <span class="twitter_share">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= @game.tweet_button_message%>">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </span>
-
-        <span class="Facebook">
-            <iframe src="https://www.facebook.com/plugins/like.php?href=https://gist.github.com/thebigreason/1296097&amp;show_faces=false&amp;layout=button_count" scrolling="no" frameborder="0" style="height: 21px; width: 100px" allowTransparency="true"></iframe>
-            <div class="fb-share-button" data-href="<%= home_index_path %>" data-layout="button_count"></div>
-        </span>
-    </div>
-  </div>
+    <% else %>
 
 
-  <div class="big_space"></div>
+      <%= form_tag("/game", method: "post") do %>
+      <%= label_tag(:username, "Enter a new Twitter handle to begin playing") %>
+      <%= text_field_tag(:username) %>
+      <%= submit_tag("Submit") %>
+      <% end %>
 
-  <%= form_tag("/game", method: "post") do %>
-  <%= label_tag(:username, "Enter a new Twitter handle to begin playing") %>
-  <%= text_field_tag(:username) %>
-  <%= submit_tag("Submit") %>
-  <% end %>
+    <% end %>
 
-  <%= form_for @user, :url => {:action => "remove", :controller => "users" }, :method => :patch do  %>
-    <%= label_tag(:name, "Enter a name above to delete") %>
-    <%= text_field_tag(:name, "(ex: Adam Moelis)") %>
-    <%= submit_tag "Delete" %>
-  <% end %>
-
-  <p>
-
-  			<a class="facebook-before" href="/auth/:provider/callback"><span class="fontawesome-facebook"></span></a>
-  			<button class="facebook">Login Using Facbook</button>
-
-  		</p>
-
-  		<p>
-
-  			<a class="twitter-before" href="/auth/twitter/"><span class="fontawesome-twitter"></span></a>
-  			<button class="twitter">Login Using Twitter</button>
-
-  		</p>
+    <%= link_to "Return to Default Game!", {controller: "home", action: "index"}, method: :get %>
 
 <% else %>
 
+  Uh oh! It appears ou aren't signed in!
 
-  <%= form_tag("/game", method: "post") do %>
-  <%= label_tag(:username, "Enter a new Twitter handle to begin playing") %>
-  <%= text_field_tag(:username) %>
-  <%= submit_tag("Submit") %>
-  <% end %>
+  <%= link_to "Return to Default Game!", {controller: "home", action: "index"}, method: :get %>
 
+  or Sign-In below to play a custom game
 
+    <p>
 
+          <a class="facebook-before" href="/auth/:provider/callback"><span class="fontawesome-facebook"></span></a>
+          <button class="facebook">Login Using Facbook</button>
+
+        </p>
+
+        <p>
+
+          <a class="twitter-before" href="/auth/twitter/"><span class="fontawesome-twitter"></span></a>
+          <button class="twitter">Login Using Twitter</button>
+
+        </p>
 <% end %>

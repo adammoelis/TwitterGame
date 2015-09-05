@@ -23,6 +23,10 @@ class Account < ActiveRecord::Base
     self.users << user_object unless self.users.include?(user_object)
   end
 
+  def remove_user(user_object)
+    self.users.delete(user_object) << user_object if self.users.include?(user_object)
+  end
+
 
 
 end

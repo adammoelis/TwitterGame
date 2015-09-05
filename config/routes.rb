@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post '/logout', to: "sessions#logout"
   get '/game', to: "home#custom"
   post '/game', to: "home#add_to_custom"
+  patch '/game', to: "home#update_custom_score"
+  delete '/game', to: "home#remove_from_custom"
 
 
   resources :users

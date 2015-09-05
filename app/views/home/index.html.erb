@@ -104,16 +104,24 @@
   <%= submit_tag "Delete" %>
 <% end %>
 
-<p>
 
-			<a class="facebook-before" href="/auth/:provider/callback"><span class="fontawesome-facebook"></span></a>
-			<button class="facebook">Login Using Facbook</button>
+<% if current_account %>
 
-		</p>
+  <%= link_to "Play Custom Game!", {controller: "home", action: "custom"}, method: :get %>
 
-		<p>
+<% else %>
 
-			<a class="twitter-before" href="/auth/twitter/"><span class="fontawesome-twitter"></span></a>
-			<button class="twitter">Login Using Twitter</button>
+  <p>
 
-		</p>
+  <a class="facebook-before" href="/auth/:provider/callback"><span class="fontawesome-facebook"></span></a>
+  <button class="facebook">Login Using Facbook</button>
+
+  </p>
+
+  <p>
+
+  <a class="twitter-before" href="/auth/twitter/"><span class="fontawesome-twitter"></span></a>
+  <button class="twitter">Login Using Twitter</button>
+
+  </p>
+<% end %>
