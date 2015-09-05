@@ -90,14 +90,15 @@
 
 <div class="big_space"></div>
 
-<form action="<%= home_new_path %>" method="post">
+<form action=<%= home_add_path %> method="post">
+  <input name="_method" type="hidden" value="patch" />
   <br>
   <label for="username"> Enter a new Twitter handle</label>
   <input id="username" type="text" name="username" value="(ex: kingjames)">
   <input type="submit" value="Submit">
 </form>
 
-<%= form_for @user, :method => :delete do  %>
+<%= form_for @user, :url => {:action => "remove", :controller => "users" }, :method => :patch do  %>
   <%= label_tag(:name, "Enter a name above to delete") %>
   <%= text_field_tag(:name, "(ex: Adam Moelis)") %>
   <%= submit_tag "Delete" %>

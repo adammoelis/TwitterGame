@@ -11,14 +11,19 @@ class HomeController < ApplicationController
 
   def new
     @username = params[:username]
+    binding.pry
     begin
       @name = Tweet.get_name(@username)
     rescue
     else
       if User.find_by_name(@name)
-        flash[:notice] = "User already exists"
+        binding.pry
+        @user = User.find_by_name(@name)
+        @user.add_to_default_game
       else
-        Tweet.fetch_tweets_for(@username)
+        binding.pry
+        @user = Tweet.fetch_tweets_for(@username)
+        @user.add_to_default_game
       end
     end
     redirect_to '/home/index'
@@ -38,6 +43,11 @@ class HomeController < ApplicationController
     @game.answer_status = @answer_status
     @users = User.all
     render 'home/index'
+  end
+
+  def update_default
+
+
   end
 
 

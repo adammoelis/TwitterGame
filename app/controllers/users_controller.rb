@@ -4,10 +4,11 @@ class UsersController < ApplicationController
   http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"], except: [:index, :show, :update]
 
 
-  def destroy
+  def remove
+    binding.pry
     if User.where("name Like ?", params[:name]).first
       @user = User.where("name Like ?", params[:name]).first
-      @user.destroy
+      @user.remove_from_default
     end
     redirect_to :controller => 'home', :action => 'index'
   end

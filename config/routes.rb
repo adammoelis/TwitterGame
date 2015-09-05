@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   get 'home/index'
   post 'home/index', to: "home#update_score"
-  post 'home/new'
+  patch 'home/add', to: "home#new"
   get 'home/new'
   patch 'home/update'
   get 'home/update'
-  delete 'home/destroy'
+  patch 'home/remove', to: "users#remove"
 
   resources :users
   resources :tweets

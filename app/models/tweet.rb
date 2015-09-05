@@ -18,6 +18,7 @@ class Tweet < ActiveRecord::Base
     filter_tweets(username).each do |tweet|
       user.tweets.create(text: tweet)
     end
+    user
   end
 
   def self.get_name(username)

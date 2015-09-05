@@ -14,13 +14,21 @@ class User < ActiveRecord::Base
     Dir.entries("app/assets/images/#{slug}").drop(2).sample
   end
 
-  def self.add_to_default_game(user_object)
+  def remove_from_default
+    self.default = false
+    self.save
+  end
+
+  def add_to_default_game
+    self.default = true
+    self.save
 
   end
 
   def self.default_twitter_accounts
     User.where(default: true)
   end
+
 
 
 
