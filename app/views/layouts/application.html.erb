@@ -26,6 +26,10 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<% if current_account %>
+<p>Signed in as <%= current_account.name %></p>
+<% end %>
+
 <%= yield %>
 
 </body>

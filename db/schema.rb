@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150904234155) do
+ActiveRecord::Schema.define(version: 20150905054826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "profile_image"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.text     "text"
@@ -25,6 +36,14 @@ ActiveRecord::Schema.define(version: 20150904234155) do
 
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
 
+  create_table "user_accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "account_id"
+  end
+
+  add_index "user_accounts", ["account_id"], name: "index_user_accounts_on_account_id", using: :btree
+  add_index "user_accounts", ["user_id"], name: "index_user_accounts_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -33,4 +52,6 @@ ActiveRecord::Schema.define(version: 20150904234155) do
     t.boolean  "default"
   end
 
+  add_foreign_key "user_accounts", "accounts"
+  add_foreign_key "user_accounts", "users"
 end
