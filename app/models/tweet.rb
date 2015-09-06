@@ -13,10 +13,11 @@ class Tweet < ActiveRecord::Base
 
 
   def self.fetch_tweets_for(username, client=@@client)
-    if filter_tweets(username, client).size > 0
+    tweets = filter_tweets(username, client)
+    if tweets.size > 0
       user = User.create(name: get_name(username, client))
       user.make_img_folder
-      filter_tweets(username, client).each do |tweet|
+      tweets.each do |tweet|
         user.tweets.create(text: tweet)
       end
       user
