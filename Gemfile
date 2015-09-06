@@ -30,6 +30,7 @@ gem 'fileutils'
 gem 'figaro'
 gem 'rails_12factor', group: :production
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'omniauth'
 
 # Use ActiveModel has_secure_password

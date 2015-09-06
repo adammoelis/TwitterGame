@@ -18,32 +18,32 @@
 
 
         <%= form_tag("/game", method: "patch") do |f| %>
+        <div class="row"
           <div class="scoreboard">
-            <span>
-              <p class="label">Score</p>
+            <div class="col-md-3">
+              <p class="label_for_scoreboard">Score</p>
               <input class="score" type="text" name="score" value="<%= @game.score %>" readonly>
-            </span>
+            </div>
 
-            <span>
-              <p class="label">Attempts</p>
+            <div class="col-md-3">
+              <p class="label_for_scoreboard">Attempts</p>
               <input class="score" type="text" name="attempts" value="<%= @game.attempts %>" readonly>
-            </span>
+            </div>
 
-            <span>
-            <p class="label">Percentage</p>
+            <div class="col-md-3">
+            <p class="label_for_scoreboard">Percentage</p>
               <input class="score" type="text" name="percentage" value="<%= @game.display_percentage %>" readonly>
 
-            </span>
+            </div>
 
-                <span>
-                <p class="label">Feedback</p>
+                <div class="col-md-3">
+                <p class="label_for_scoreboard">Feedback</p>
                 <input class="score <%= @game.feedback_class_type %>" type="text"  value="<%= @game.feedback_value %>" readonly>
-                </span>
+              </div>
 
 
           </div>
         </div>
-        <div class = "wrapper">
 
         <br>
         <br>
@@ -69,7 +69,6 @@
             <%= link_to "#{@game.start_over}", home_index_path, class: "start_over" %>
           <% end %>
       </div>
-
 
 
       <%= form_tag("/game", method: "post") do %>
@@ -100,23 +99,6 @@
 
 <% else %>
 
-  Uh oh! It appears ou aren't signed in!
+  Uh oh! It appears you aren't signed in! Please login above or return to the home game
 
-  <%= link_to "Return to Default Game!", {controller: "home", action: "index"}, method: :get %>
-
-  or Sign-In below to play a custom game
-
-    <p>
-
-          <a class="facebook-before" href="/auth/:provider/callback"><span class="fontawesome-facebook"></span></a>
-          <button class="facebook">Login Using Facbook</button>
-
-        </p>
-
-        <p>
-
-          <a class="twitter-before" href="/auth/twitter/"><span class="fontawesome-twitter"></span></a>
-          <button class="twitter">Login Using Twitter</button>
-
-        </p>
 <% end %>

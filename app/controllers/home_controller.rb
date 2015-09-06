@@ -78,8 +78,13 @@ class HomeController < ApplicationController
         @user = User.find_by_name(@name)
         current_account.add_user(@user)
       else
-        @user = Tweet.fetch_tweets_for(@username, current_account.twitter)
-        current_account.add_user(@user)
+        if current_account.provider == "twitter"
+          @user = Tweet.fetch_tweets_for(@username, current_account.twitter)
+          current_account.add_user(@user)
+        else
+          @user = Tweet.fetch_tweets_for(@username)
+          current_account.add_user(@user)
+        end
       end
     end
     redirect_to '/game'
