@@ -80,7 +80,7 @@
       <%= form_tag("/game", method: "delete") do %>
       <%= label_tag(:name, "Remove from game") %>
       <%= collection_select(:user, :name, @users, :name, :name) %>
-      <%= submit_tag("Submit") %>
+      <%= submit_tag("Remove") %>
       <% end %>
       <% if flash[:notice] %>
         <div class="alert alert-danger">
@@ -91,13 +91,34 @@
 
 
     <% else %>
-
-
-      <%= form_tag("/game", method: "post") do %>
-      <%= label_tag(:username, "Enter a new Twitter handle to begin playing") %>
-      <%= text_field_tag(:username) %>
-      <%= submit_tag("Submit") %>
+      <h1>Welcome to Who Tweeted It?</h1>
+      <% if current_account.users.size == 1 %>
+        <h2>To get started, you'll need to enter one more Twitter handle</h2>
+        <%= form_tag("/game", method: "post") do %>
+        <%= label_tag(:username, "Enter 2nd Twitter handle") %>
+        <%= text_field_tag(:username) %>
+        <%= submit_tag("Submit") %>
+        <% end %>
+        <%= form_tag("/game", method: "delete") do %>
+        <%= label_tag(:name, "Remove from game") %>
+        <%= collection_select(:user, :name, current_account.users, :name, :name) %>
+        <%= submit_tag("Remove") %>
+        <% end %>
+      <% else %>
+        <h2>To get started, you'll need to enter two Twitter handles</h2>
+        <%= form_tag("/game", method: "post") do %>
+        <%= label_tag(:username, "Enter 1st handle") %>
+        <%= text_field_tag(:username) %>
+        <%= submit_tag("Submit") %>
+        <% end %>
       <% end %>
+
+
+      <% if flash[:notice] %>
+        <div class="alert alert-danger">
+            <%= flash[:notice] %>
+        </div>
+        <% end %>
 
     <% end %>
 
