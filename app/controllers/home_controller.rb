@@ -69,7 +69,6 @@ class HomeController < ApplicationController
 
   def set_default
     @user = User.find_by(name: params[:user][:name])
-    binding.pry
     if @user.republican
       session[:republican_default] = @user.name
     elsif @user.democrat
@@ -77,7 +76,6 @@ class HomeController < ApplicationController
     elsif @user.jerseyshore
       session[:jerseyshore_default] = @user.name
     end
-    binding.pry
     redirect_to '/home/index'
   end
 
