@@ -8,6 +8,10 @@ class SessionsController < ApplicationController
 
   def logout
     session[:account_id] = nil
+    session[:republican_default] = nil
+    session[:democrat_default] = nil
+    session[:jerseyshore_default] = nil
+
     redirect_to '/'
 
 

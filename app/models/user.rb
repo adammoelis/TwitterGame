@@ -24,11 +24,20 @@ class User < ActiveRecord::Base
   def add_to_default_game
     self.default = true
     self.save
-
   end
 
   def self.default_twitter_accounts
     User.where(default: true)
+  end
+
+  def set_temp_default
+    # if self.republican
+    #   session[:republican_default] = self.name
+    # elsif self.democrat
+    #   session[:democrat_default] = self.name
+    # elsif self.jerseyshore
+    #   session[:jerseyshore_default] = self.name
+    # end
   end
 
 

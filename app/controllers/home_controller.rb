@@ -6,6 +6,9 @@ class HomeController < ApplicationController
   def index
     @game = Game.new(0,0)
     @users = User.all
+    session[:republican_default] ||= User.find_by(name: "Donald J. Trump").name
+    session[:democrat_default] ||= User.find_by(name: "Hillary Clinton").name
+    session[:jerseyshore_default] ||= User.find_by(name: "DJ Pauly D").name
     render 'home/index'
   end
 
@@ -45,7 +48,6 @@ class HomeController < ApplicationController
     @game = Game.new(@score, params[:attempts].to_i + 1)
     @game.right_person = @former_right_user
     @game.answer_status = @answer_status
-    @users = User.all
     render 'home/index'
   end
 
@@ -65,7 +67,18 @@ class HomeController < ApplicationController
     render '/home/custom'
   end
 
-  def update_default
+  def set_default
+    @user = User.find_by(name: params[:user][:name])
+    binding.pry
+    if @user.republican
+      session[:republican_default] = @user.name
+    elsif @user.democrat
+      session[:democrat_default] = @user.name
+    elsif @user.jerseyshore
+      session[:jerseyshore_default] = @user.name
+    end
+    binding.pry
+    redirect_to '/home/index'
   end
 
   def add_to_custom

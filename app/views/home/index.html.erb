@@ -7,7 +7,7 @@
   </div>
 
   <br>
-  <% @users = User.default_twitter_accounts %>
+  <% @users = default_accounts %>
   <% @user = @users.sample %>
   <% @user.name %>
   <br>
@@ -49,17 +49,36 @@
   <br>
 
   <div class="all_buttons">
-    <% @users.all.each do |user| %>
+    <% @users.each do |user| %>
     <div id="name_button" class="<%= user.slug %>">
       <input type="submit" class="myButton" name="name" value="<%= user.name %>">
       <div id="hidden" class ="<%= user.slug %>_img">
-        <%=image_tag("#{user.slug}/#{user.select_random_image}", alt: "#{user.name}")%>
+
       </div>
     </div>
+
     <% end %>
   </div>
   <br>
   <input type="hidden" name="user_id" value="<%= @user.id %>">
+<% end %>
+
+<%= form_tag("/home", method: "post") do %>
+<%= label_tag(:name, "Choose a republican") %>
+<%= collection_select(:user, :name, User.where(republican: true), :name, :name) %>
+<%= submit_tag("Change Default") %>
+<% end %>
+
+<%= form_tag("/home", method: "post") do %>
+<%= label_tag(:name, "Choose a democrat") %>
+<%= collection_select(:user, :name, User.where(democrat: true), :name, :name) %>
+<%= submit_tag("Change Default") %>
+<% end %>
+
+<%= form_tag("/home", method: "post") do %>
+<%= label_tag(:name, "Choose a Jersey Shore cast member") %>
+<%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name) %>
+<%= submit_tag("Change Default") %>
 <% end %>
 
   <div class="answer_status_box">
