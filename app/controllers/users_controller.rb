@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # include Key
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"], except: [:index, :show, :update]
+  # http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"], except: [:index, :show, :update]
 
 
   def remove
