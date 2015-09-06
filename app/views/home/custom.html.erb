@@ -53,7 +53,7 @@
           <div id="name_button" class="<%= user.slug %>">
             <input type="submit" class="myButton" name="name" value="<%= user.name %>">
             <div id="hidden" class ="<%= user.slug %>_img">
-              
+
             </div>
           </div>
           <% end %>
@@ -78,10 +78,15 @@
       <% end %>
 
       <%= form_tag("/game", method: "delete") do %>
-      <%= label_tag(:name, "Enter name to remove a handle from the game:") %>
-      <%= text_field_tag(:name) %>
+      <%= label_tag(:name, "Remove from game") %>
+      <%= collection_select(:user, :name, @users, :name, :name) %>
       <%= submit_tag("Submit") %>
       <% end %>
+      <% if flash[:notice] %>
+        <div class="alert alert-danger">
+            <%= flash[:notice] %>
+        </div>
+        <% end %>
 
 
 

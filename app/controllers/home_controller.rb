@@ -73,6 +73,7 @@ class HomeController < ApplicationController
     begin
       @name = Tweet.get_name(@username, current_account.twitter)
     rescue
+      flash[:notice] = "Sorry, we could not locate that username"
     else
       if User.find_by_name(@name)
         @user = User.find_by_name(@name)
@@ -91,8 +92,8 @@ class HomeController < ApplicationController
   end
 
   def remove_from_custom
-    if User.where("name Like ?", params[:name]).first
-      @user = User.where("name Like ?", params[:name]).first
+    if User.where("name Like ?", params[:user][:name]).first
+      @user = User.where("name Like ?", params[:user][:name]).first
       current_account.remove_user(@user)
     end
     redirect_to '/game'
