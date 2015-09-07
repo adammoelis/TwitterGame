@@ -33,7 +33,7 @@ class HomeController < ApplicationController
         @user.add_to_default_game
       end
     end
-    redirect_to '/home/index'
+    redirect_to '/'
   end
 
   def update_score
@@ -76,7 +76,7 @@ class HomeController < ApplicationController
     elsif @user.jerseyshore
       session[:jerseyshore_default] = @user.name
     end
-    redirect_to '/home/index'
+    redirect_to '/'
   end
 
   def add_to_custom
