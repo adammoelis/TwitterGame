@@ -52,9 +52,6 @@
     <% @users.each do |user| %>
     <div id="name_button" class="<%= user.slug %>">
       <input type="submit" class="myButton" name="name" value="<%= user.name %>">
-      <div style="z-index:999; color: black; border: solid;"> BLAH BLAH
-      </div>
-
     </div>
 
     <% end %>
@@ -62,24 +59,33 @@
   <br>
   <input type="hidden" name="user_id" value="<%= @user.id %>">
 <% end %>
+<br>
+<span style="position: absolute; z-index:999; color: black; width: 200px; right: 800px;">
+  <%= form_tag("/home", method: "post") do %>
+  <%= label_tag(:name, "Republican:") %> <br>
+  <%= collection_select(:user, :name, User.where(republican: true), :name, :name) %> <br>
+  <%= submit_tag("Change Default") %>
+  <% end %>
+</span>
+<span style="position: absolute; z-index:999; color: black; width: 200px; right: 590px;">
+  <%= form_tag("/home", method: "post") do %>
+  <%= label_tag(:name, "Democrat:") %> <br>
+  <%= collection_select(:user, :name, User.where(democrat: true), :name, :name) %> <br>
+  <%= submit_tag("Change Default") %>
+  <% end %>
+</span>
 
-<%= form_tag("/home", method: "post") do %>
-<%= label_tag(:name, "Choose a republican") %>
-<%= collection_select(:user, :name, User.where(republican: true), :name, :name) %>
-<%= submit_tag("Change Default") %>
-<% end %>
-
-<%= form_tag("/home", method: "post") do %>
-<%= label_tag(:name, "Choose a democrat") %>
-<%= collection_select(:user, :name, User.where(democrat: true), :name, :name) %>
-<%= submit_tag("Change Default") %>
-<% end %>
-
-<%= form_tag("/home", method: "post") do %>
-<%= label_tag(:name, "Choose a Jersey Shore cast member") %>
-<%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name) %>
-<%= submit_tag("Change Default") %>
-<% end %>
+<span style="position: absolute; z-index:999; color: black; width: 200px; right: 390px;">
+  <%= form_tag("/home", method: "post") do %>
+  <%= label_tag(:name, "Jersey Shore:") %>
+  <%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name) %>
+  <%= submit_tag("Change Default") %>
+  <% end %>
+</span>
+<br>
+<br>
+<br>
+<br>
 
   <div class="answer_status_box">
 

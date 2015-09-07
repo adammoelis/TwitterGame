@@ -116,7 +116,7 @@ h2.tweet_text {
 
 #name_button {
 	// border: solid;
-	overflow: hidden;
+	overflow: visible;
 	// position: relative;
 	height: 200px;
 	width: 200px;
@@ -507,4 +507,9 @@ span {
   // border: solid;
   margin-top: 0px;
   height: 130px;
+}
+
+.default_accounts {
+  border: solid;
+  width: 100px;
 }
