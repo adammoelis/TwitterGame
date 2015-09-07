@@ -53,32 +53,31 @@
     <div id="name_button" class="<%= user.slug %>">
       <input type="submit" class="myButton" name="name" value="<%= user.name %>">
     </div>
-
     <% end %>
   </div>
   <br>
   <input type="hidden" name="user_id" value="<%= @user.id %>">
 <% end %>
 <br>
-<span style="position: absolute; z-index:999; color: black; width: 200px; right: 800px;">
+<span style="position: absolute; width: 200px; right: 800px;">
   <%= form_tag("/home", method: "post") do %>
   <%= label_tag(:name, "Republican:") %> <br>
-  <%= collection_select(:user, :name, User.where(republican: true), :name, :name) %> <br>
+  <%= collection_select(:user, :name, User.where(republican: true), :name, :name, {:selected =>  "Donald J. Trump"}) %> <br>
   <%= submit_tag("Change Default") %>
   <% end %>
 </span>
-<span style="position: absolute; z-index:999; color: black; width: 200px; right: 590px;">
+<span style="position: absolute; width: 200px; right: 590px;">
   <%= form_tag("/home", method: "post") do %>
   <%= label_tag(:name, "Democrat:") %> <br>
-  <%= collection_select(:user, :name, User.where(democrat: true), :name, :name) %> <br>
+  <%= collection_select(:user, :name, User.where(democrat: true), :name, :name, {:selected =>  "Hillary Clinton"}) %> <br>
   <%= submit_tag("Change Default") %>
   <% end %>
 </span>
 
-<span style="position: absolute; z-index:999; color: black; width: 200px; right: 390px;">
+<span style="position: absolute; width: 200px; right: 390px;">
   <%= form_tag("/home", method: "post") do %>
   <%= label_tag(:name, "Jersey Shore:") %>
-  <%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name) %>
+  <%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name, {:selected =>  "DJ Pauly D"}) %>
   <%= submit_tag("Change Default") %>
   <% end %>
 </span>
