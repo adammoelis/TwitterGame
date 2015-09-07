@@ -62,15 +62,19 @@
         <input type="hidden" name="user_id" value="<%= @user.id %>">
       <% end %>
 
+        <% if @game.display_after_answer %>
         <div class="answer_status_box">
 
           <p class="answer_status"> <%= @game.display_after_answer %></p>
 
       </div>
+      <% end %>
+
+      <div style="margin-bottom:200px;">
 
 
       <%= form_tag("/game", method: "post") do %>
-      <%= label_tag(:username, "Enter a Twitter handle to add to the game:") %>
+      <%= label_tag(:username, "Add a username:") %>
       <%= text_field_tag(:username) %>
       <%= submit_tag("Submit") %>
       <% end %>
@@ -85,6 +89,7 @@
             <%= flash[:notice] %>
         </div>
         <% end %>
+        </div>
 
 
 
