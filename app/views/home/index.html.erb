@@ -97,7 +97,7 @@
 
 <% if @game.attempts > 3 %>
   <div class="container play-again">
-    <%= "You got #{@game.score}/#{@game.attempts} correct! Click below to" %>
+    <%= "You got #{@game.score}/#{@game.attempts} correct! #{@game.feedback_value} Click to" %>
     <a href="/"><button>Play Again!</button></a>
     <p>SOCIAL MEDIA BUTTONS HERE TO SHARE YOUR SCORE AND WHO YOU PLAYED WITH</p>
   </div>
