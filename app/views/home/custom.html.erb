@@ -47,27 +47,36 @@
 
         <br>
         <br>
-
-        <div class="all_buttons">
-          <% @users.all.each do |user| %>
-          <div id="name_button" class="<%= user.slug %>">
-            <input type="submit" class="myButton" name="name" value="<%= user.name %>">
-            <div id="hidden" class ="<%= user.slug %>_img">
-
+        <% if @game.attempts < Game.max_games %>
+          <div class="all_buttons">
+            <% @users.all.each do |user| %>
+            <div id="name_button" class="<%= user.slug %>">
+              <input type="submit" class="myButton" name="name" value="<%= user.name %>">
             </div>
+            <% end %>
+
           </div>
-          <% end %>
-        </div>
-        <br>
-        <input type="hidden" name="user_id" value="<%= @user.id %>">
+          <br>
+          <input type="hidden" name="user_id" value="<%= @user.id %>">
       <% end %>
+    <% end %>
 
         <% if @game.display_after_answer %>
         <div class="answer_status_box">
-
           <p class="answer_status"> <%= @game.display_after_answer %></p>
-
-      </div>
+        </div>
+          <% if @game.attempts >= Game.max_games %>
+            <div class="container play-again">
+              <p class="answer_status" style="font-size: 50px;"><%= "You got #{@game.score}/#{@game.attempts} correct! #{@game.feedback_value}" %></p>
+              <br>
+              <a href="/game"><button>Play Again!</button></a>
+              <br>
+              <br>
+              <p>Share your game with friends!</p>
+              <a href="https://twitter.com/share" data-text="<%= "I got #{@game.display_percentage} using #{@users.map{|user| user.name}.to_sentence}. How many can you guess? #WhoTweetedIt"%>" title="Share on Twitter" target="_blank" class="btn btn-twitter twitter-share-button"><i class="fa fa-twitter"></i> Twitter</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+            </div>
+          <% end %>
       <% end %>
 
       <div class="container" style="margin-bottom:200px; margin-top:100px;">
