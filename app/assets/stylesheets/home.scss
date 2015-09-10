@@ -234,11 +234,12 @@ span {
 	font-family: 'Indie Flower', cursive;
 	font-size: 5em;
 	text-align: center;
+  margin-top: 10px;
 }
 
 .answer_status_box {
-	margin-top: 100px;
-  margin-bottom: 150px;
+	margin-top: 70px;
+  margin-bottom: 100px;
 }
 
 .social {
@@ -508,4 +509,8 @@ span {
   // border: solid;
   margin-top: 0px;
   height: 130px;
+}
+
+.play-again {
+  text-align: center;
 }

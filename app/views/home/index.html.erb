@@ -47,7 +47,7 @@
 
   <br>
   <br>
-   <% if @game.attempts <= 3 %>
+   <% if @game.attempts < Game.max_games %>
       <div class="all_buttons">
         <% @users.each do |user| %>
         <div id="name_button" class="<%= user.slug %>">
@@ -61,7 +61,7 @@
 <% end %>
 
 <br>
-<% if @game.attempts <= 3 %>
+<% if @game.attempts < Game.max_games %>
     <span style="position: absolute; width: 200px; right: 800px;">
       <%= form_tag("/home", method: "post") do %>
       <%= label_tag(:name, "Republican:") %> <br>
@@ -95,10 +95,15 @@
     <p class="answer_status"> <%= @game.display_after_answer %></p>
   </div>
 
-<% if @game.attempts > 3 %>
+<% if @game.attempts >= Game.max_games %>
   <div class="container play-again">
-    <%= "You got #{@game.score}/#{@game.attempts} correct! #{@game.feedback_value} Click to" %>
+    <p class="answer_status" style="font-size: 50px;"><%= "You got #{@game.score}/#{@game.attempts} correct! #{@game.feedback_value}" %></p>
+    <br>
     <a href="/"><button>Play Again!</button></a>
-    <p>SOCIAL MEDIA BUTTONS HERE TO SHARE YOUR SCORE AND WHO YOU PLAYED WITH</p>
+    <br>
+    <br>
+    <p>Share your game with friends!</p>
+    <a href="https://twitter.com/share" data-text="<%= @game.tweet_button_message%> <%= @users.each{|user| user.name}%>" title="Share on Twitter" target="_blank" class="btn btn-twitter twitter-share-button"><i class="fa fa-twitter"></i> Twitter</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
   </div>
 <% end %>
