@@ -16,3 +16,35 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
+$( document ).ready(function() {
+    hideAddUsername()
+    hideRemoveUsername()
+    showAddUsername()
+    showRemoveUsername()
+
+
+});
+
+function hideAddUsername() {
+  $('input#username').hide();
+  $('input#add-username-submit').hide();
+}
+
+function hideRemoveUsername() {
+  $('select#user_name').hide();
+  $('input#remove-username-submit').hide();
+}
+
+function showAddUsername() {
+  $('label#add-username').click(function(){
+    $('input#username').slideToggle();
+    $('input#add-username-submit').slideToggle();
+  })
+}
+
+function showRemoveUsername() {
+  $('label#remove-username').click(function(){
+    $('select#user_name').slideToggle();
+    $('input#remove-username-submit').slideToggle();
+  })
+}

@@ -65,14 +65,14 @@
     <span style="position: absolute; width: 200px; right: 800px;">
       <%= form_tag("/home", method: "post") do %>
       <%= label_tag(:name, "Republican:") %> <br>
-      <%= collection_select(:user, :name, User.where(republican: true), :name, :name, {:selected =>  "Donald J. Trump"}) %> <br>
+      <%= collection_select(:user, :name, User.where(republican: true), :name, :name, {:selected =>  "Donald J. Trump"}, {id: 'republican_select'}) %> <br>
       <%= submit_tag("Change Default") %>
       <% end %>
     </span>
     <span style="position: absolute; width: 200px; right: 590px;">
       <%= form_tag("/home", method: "post") do %>
       <%= label_tag(:name, "Democrat:") %> <br>
-      <%= collection_select(:user, :name, User.where(democrat: true), :name, :name, {:selected =>  "Hillary Clinton"}) %> <br>
+      <%= collection_select(:user, :name, User.where(democrat: true), :name, :name, {:selected =>  "Hillary Clinton"}, {id: 'democrat_select'}) %> <br>
       <%= submit_tag("Change Default") %>
       <% end %>
     </span>
@@ -80,7 +80,7 @@
     <span style="position: absolute; width: 200px; right: 390px;">
       <%= form_tag("/home", method: "post") do %>
       <%= label_tag(:name, "Jersey Shore:") %>
-      <%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name, {:selected =>  "DJ Pauly D"}) %>
+      <%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name, {:selected =>  "DJ Pauly D"}, {id: 'jerseyshore_select'}) %>
       <%= submit_tag("Change Default") %>
       <% end %>
     </span>

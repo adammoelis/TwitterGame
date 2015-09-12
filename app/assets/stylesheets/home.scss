@@ -514,3 +514,13 @@ span {
 .play-again {
   text-align: center;
 }
+
+#add-username, #remove-username {
+  cursor:pointer;
+  color:blue;
+  text-decoration:none;
+}
+
+#add-username:hover, #remove-username:hover {
+  text-decoration:underline;
+}
