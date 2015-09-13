@@ -16,13 +16,12 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
+
 $( document ).ready(function() {
-    hideAddUsername()
-    hideRemoveUsername()
-    showAddUsername()
-    showRemoveUsername()
-
-
+    hideAddUsername();
+    hideRemoveUsername();
+    showAddUsername();
+    showRemoveUsername();
 });
 
 function hideAddUsername() {
