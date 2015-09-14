@@ -37,8 +37,8 @@ $( document ).ready(function() {
 
         return false;
       });
-      preventButtonClicking()
-      selectedAnswer()
+      preventButtonClicking();
+      playGame();
 
 });
 
@@ -99,24 +99,42 @@ function increaseRound(){
 }
 
 function increaseAttempts(){
-  round++
+  attempts++
 }
 
 function increaseScore(){
-  round++
+  score++
 }
 
 function displayTweet(){
   $('h2.tweet_text').text(getTweetArray()[round-1]);
 }
 
+function setScore(){
+  if(selectedAnswer() == getAccountArray()[round-1]){
+    increaseScore()
+  }
+  $('input[name=score]').val(score)
+}
 
+function setAttempts(){
+  increaseAttempts()
+  $('input[name=attempts]').val(attempts)
+}
+
+function displayRightAnswer(){
+  $('input[name=attempts]').val(attempts)
+}
 
 
 function playGame (){
   $('input.myButton').click(function(){
-    increaseRound();
+    var selected = $(this).val();
     setScore();
     setAttempts();
+    displayRightAnswer();
+    increaseRound();
+    displayTweet();
+
   })
 }
