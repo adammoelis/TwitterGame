@@ -524,3 +524,13 @@ span {
 #add-username:hover, #remove-username:hover {
   text-decoration:underline;
 }
+
+li > .btn-twitter {
+    background: inherit;
+    border-radius: 0;
+}
+
+li > .btn-facebook {
+    background: inherit;
+    border-radius: 0;
+}

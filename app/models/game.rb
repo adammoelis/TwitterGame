@@ -2,7 +2,7 @@ class Game
 
     attr_accessor :score, :attempts, :percentage, :answer_status, :right_person
 
-    @@max_games = 10
+    @@max_games = 2
 
     def initialize(score, attempts)
       @score = score
