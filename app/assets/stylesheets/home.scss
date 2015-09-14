@@ -513,6 +513,7 @@ span {
 
 .play-again {
   text-align: center;
+  margin-bottom: 50px;
 }
 
 #add-username, #remove-username {
@@ -533,4 +534,8 @@ li > .btn-twitter {
 li > .btn-facebook {
     background: inherit;
     border-radius: 0;
+}
+
+.fb-like {
+  position: fixed;
 }
