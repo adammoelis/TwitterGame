@@ -11,10 +11,11 @@
         <% @user = @users.sample %>
         <% @user.name %>
         <br>
-
-        <div class="tweet">
-          <h2 class="tweet_text"><%= @user.tweets.sample.text %></h2>
-        </div>
+        <% if @game.attempts < Game.max_games %>
+          <div class="tweet">
+            <h2 class="tweet_text"><%= @user.tweets.sample.text %></h2>
+          </div>
+        <% end %>
 
 
         <%= form_tag("/game", method: "patch") do |f| %>

@@ -11,10 +11,11 @@
   <% @user = @users.sample %>
   <% @user.name %>
   <br>
-
+<% if @game.attempts < Game.max_games %>
   <div class="tweet">
     <h2 class="tweet_text"><%= @user.tweets.sample.text %></h2>
   </div>
+<% end %>
 
 
   <%= form_tag("/", method: "post") do |f| %>
@@ -55,21 +56,19 @@
         </div>
         <% end %>
       </div>
-      <br>
       <input type="hidden" name="user_id" value="<%= @user.id %>">
     <% end %>
 <% end %>
 
-<br>
 <% if @game.attempts < Game.max_games %>
-    <span style="position: absolute; width: 200px; right: 800px;">
+    <span style="position: absolute; width: 200px; right: 800px; margin-top: -30px">
       <%= form_tag("/home", method: "post") do %>
       <%= label_tag(:name, "Republican:") %> <br>
       <%= collection_select(:user, :name, User.where(republican: true), :name, :name, {:selected =>  "Donald J. Trump"}, {id: 'republican_select'}) %> <br>
       <%= submit_tag("Change Default") %>
       <% end %>
     </span>
-    <span style="position: absolute; width: 200px; right: 590px;">
+    <span style="position: absolute; width: 200px; right: 590px; margin-top: -30px">
       <%= form_tag("/home", method: "post") do %>
       <%= label_tag(:name, "Democrat:") %> <br>
       <%= collection_select(:user, :name, User.where(democrat: true), :name, :name, {:selected =>  "Hillary Clinton"}, {id: 'democrat_select'}) %> <br>
@@ -77,7 +76,7 @@
       <% end %>
     </span>
 
-    <span style="position: absolute; width: 200px; right: 390px;">
+    <span style="position: absolute; width: 200px; right: 390px; margin-top: -30px">
       <%= form_tag("/home", method: "post") do %>
       <%= label_tag(:name, "Jersey Shore:") %>
       <%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name, {:selected =>  "DJ Pauly D"}, {id: 'jerseyshore_select'}) %>
