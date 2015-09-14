@@ -81,3 +81,42 @@ function selectedAnswer() {
     return $(this).val();
   })
 }
+
+function getAccountArray (){
+  return $('input:hidden#game_accounts').val().split("^@$#");
+}
+
+function getTweetArray (){
+  return $('input:hidden#game_tweets').val().split("^@$#");
+}
+
+var round = 1;
+var score = 0;
+var attempts = 0;
+
+function increaseRound(){
+  round++
+}
+
+function increaseAttempts(){
+  round++
+}
+
+function increaseScore(){
+  round++
+}
+
+function displayTweet(){
+  $('h2.tweet_text').text(getTweetArray()[round-1]);
+}
+
+
+
+
+function playGame (){
+  $('input.myButton').click(function(){
+    increaseRound();
+    setScore();
+    setAttempts();
+  })
+}
