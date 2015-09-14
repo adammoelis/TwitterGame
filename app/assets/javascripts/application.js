@@ -110,8 +110,8 @@ function displayTweet(){
   $('h2.tweet_text').text(getTweetArray()[round-1]);
 }
 
-function setScore(){
-  if(selectedAnswer() == getAccountArray()[round-1]){
+function setScore(selected){
+  if(selected == getAccountArray()[round-1]){
     increaseScore()
   }
   $('input[name=score]').val(score)
@@ -126,15 +126,48 @@ function displayRightAnswer(){
   $('input[name=attempts]').val(attempts)
 }
 
+function setPercentage(){
+  if(attempts == 0){
+    $('input[name=percentage]').val("N/A")
+  }
+  else {
+    $('input[name=percentage]').val(Math.round(100*score/attempts)+"%")
+  }
+
+}
+
+function setFeedback(){
+  var percentage = 100*score/attempts;
+  if(attempts == 0){
+    $('input.feedback').val('None Wrong ... yet');
+  }
+  else{
+      if(percentage >=75 && percentage <=100){
+          $('input.feedback').val('Great Job!');
+      }
+      else if (percentage >=50 && percentage <75){
+          $('input.feedback').val('Okay Job');
+      }
+      else if (percentage >=25 && percentage <50){
+          $('input.feedback').val('You KINDA suck');
+      }
+      else if (percentage >=0 && percentage <25){
+          $('input.feedback').val('You REALLY suck');
+      }
+    }
+  }
+
+
 
 function playGame (){
   $('input.myButton').click(function(){
     var selected = $(this).val();
-    setScore();
+    setScore(selected);
     setAttempts();
+    setPercentage();
+    setFeedback();
     displayRightAnswer();
     increaseRound();
     displayTweet();
-
   })
 }
