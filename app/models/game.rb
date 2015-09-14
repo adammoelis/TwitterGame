@@ -13,6 +13,22 @@ class Game
       @@max_games
     end
 
+    def self.generate_tweet_user_arrays_for_default
+      tweet_array = []
+      users_array = []
+      @@max_games.times do
+
+      end
+    end
+
+    def self.generate_tweet_user_arrays_for_custom
+      tweet_array = []
+      users_array = []
+      @@max_games.times do
+
+      end
+    end
+
     def percentage
       @attempts > 0 ? 100*score/attempts : nil
     end

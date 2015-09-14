@@ -57,7 +57,7 @@
         <% end %>
       </div>
       <br>
-      <input type="hidden" name="user_id" value="<%= @user.id %>">
+      <input class="right-answer" type="hidden" name="user_name" value="<%= @user.name %>">
     <% end %>
 <% end %>
 
@@ -108,3 +108,15 @@
     <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook social-pop-up"><i class="fa fa-facebook"></i> Facebook</a>
   </div>
 <% end %>
+
+
+<% tweet_array = [] %>
+<% account_array = [] %>
+<% Game.max_games.times do %>
+  <% account = @users.sample %>
+  <% account_array << account.name %>
+  <% tweet_array << account.tweets.sample.text %>
+<% end %>
+
+<input type="hidden" name="account_array" value="<%= account_array.join('^@$#') %>">
+<input type="hidden" name="tweet_array" value="<%= tweet_array.join('^@$#') %>">

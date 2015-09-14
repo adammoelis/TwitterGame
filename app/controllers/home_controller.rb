@@ -37,7 +37,7 @@ class HomeController < ApplicationController
   end
 
   def update_score
-    @former_right_user = User.find(params[:user_id])
+    @former_right_user = User.find_by(name: params[:user_name])
     if params[:name] == @former_right_user.name
       @answer_status = true
       @score = params[:score].to_i + 1
@@ -52,7 +52,7 @@ class HomeController < ApplicationController
   end
 
   def update_custom_score
-    @former_right_user = User.find(params[:user_id])
+    @former_right_user = User.find_by(name: params[:user_name])
     if params[:name] == @former_right_user.name
       @answer_status = true
       @score = params[:score].to_i + 1

@@ -37,6 +37,8 @@ $( document ).ready(function() {
 
         return false;
       });
+      preventButtonClicking()
+      selectedAnswer()
 
 });
 
@@ -61,5 +63,21 @@ function showRemoveUsername() {
   $('label#remove-username').click(function(){
     $('select#user_name').slideToggle();
     $('input#remove-username-submit').slideToggle();
+  })
+}
+
+function preventButtonClicking(){
+  $('input.myButton').click(function(e){
+    e.preventDefault()
+  })
+}
+
+function rightAnswer() {
+  return $('input.right-answer').val()
+}
+
+function selectedAnswer() {
+  $('input.myButton').click(function(){
+    return $(this).val();
   })
 }
