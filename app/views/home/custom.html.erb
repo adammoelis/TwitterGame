@@ -63,11 +63,11 @@
       <% end %>
     <% end %>
 
-        <% if @game.display_after_answer %>
+
         <div class="answer_status_box">
           <p class="answer_status"> <%= @game.display_after_answer %></p>
         </div>
-          <% if @game.attempts >= Game.max_games %>
+
             <div class="container play-again">
               <p class="answer_status" style="font-size: 50px;"><%= "You got #{@game.score}/#{@game.attempts} correct! #{@game.feedback_value}" %></p>
               <br>
@@ -78,8 +78,8 @@
               <a href="https://twitter.com/share?text=<%="I got #{@game.score}/#{@game.attempts} using #{@users.map{|user| user.name}.to_sentence}. How many can you guess? #WhoTweetedIt"%>" title="Share on Twitter" target="_blank" class="btn btn-twitter twitter-share-button social-pop-up"><i class="fa fa-twitter"></i> Twitter</a>
               <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook social-pop-up"><i class="fa fa-facebook"></i> Facebook</a>
             </div>
-          <% end %>
-      <% end %>
+
+
 
       <div class="container" style="margin-bottom:200px; margin-top:100px;">
 
