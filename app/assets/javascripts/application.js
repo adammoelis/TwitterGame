@@ -16,37 +16,49 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
-$( document ).ready(function() {
-    round = 1;
-    score = 0;
-    attempts = 0;
-    displayTweet();
-    hideAddUsername();
-    hideRemoveUsername();
-    hidePlayAgain();
-    showAddUsername();
-    showRemoveUsername();
-    $('.social-pop-up').click(function(event) {
-        var width  = 575,
-            height = 400,
-            left   = ($(window).width()  - width)  / 2,
-            top    = ($(window).height() - height) / 2,
-            url    = this.href,
-            opts   = 'status=1' +
-                     ',width='  + width  +
-                     ',height=' + height +
-                     ',top='    + top    +
-                     ',left='   + left;
-
-        window.open(url, 'twitter', opts);
-
-        return false;
-      });
-      preventButtonClicking();
-      playGame();
-
-
+$( document ).on('page:load',function() {
+    runGame();
+    playAgain();
 });
+
+$( document ).ready(function() {
+    runGame();
+    playAgain();
+});
+
+function runGame(){
+  round = 1;
+  score = 0;
+  attempts = 0;
+  displayTweet();
+  hideAddUsername();
+  hideRemoveUsername();
+  hidePlayAgain();
+  showAddUsername();
+  showRemoveUsername();
+  $('.social-pop-up').click(function(event) {
+      var width  = 575,
+          height = 400,
+          left   = ($(window).width()  - width)  / 2,
+          top    = ($(window).height() - height) / 2,
+          url    = this.href,
+          opts   = 'status=1' +
+                   ',width='  + width  +
+                   ',height=' + height +
+                   ',top='    + top    +
+                   ',left='   + left;
+
+      window.open(url, 'twitter', opts);
+
+      return false;
+    });
+    preventButtonClicking();
+    playGame();
+}
+
+function playAgain(){
+  $('button.playAgain').click(location.reload);
+}
 
 function hideAddUsername() {
   $('input#username').hide();
