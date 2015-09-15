@@ -17,10 +17,11 @@
 //= require jquery
 //= require bootstrap-sprockets
 $( document ).ready(function() {
-    hideAddUsername()
-    hideRemoveUsername()
-    showAddUsername()
-    showRemoveUsername()
+  displayTweet();
+    hideAddUsername();
+    hideRemoveUsername();
+    showAddUsername();
+    showRemoveUsername();
     $('.social-pop-up').click(function(event) {
         var width  = 575,
             height = 400,
@@ -144,15 +145,31 @@ function setFeedback(){
   else{
       if(percentage >=75 && percentage <=100){
           $('input.feedback').val('Great Job!');
+          $('input.feedback').addClass("great");
+          $('input.feedback').removeClass("good");
+          $('input.feedback').removeClass("bad");
+          $('input.feedback').removeClass("terrible");
       }
       else if (percentage >=50 && percentage <75){
           $('input.feedback').val('Okay Job');
+          $('input.feedback').addClass("good");
+          $('input.feedback').removeClass("great");
+          $('input.feedback').removeClass("bad");
+          $('input.feedback').removeClass("terrible");
       }
       else if (percentage >=25 && percentage <50){
           $('input.feedback').val('You KINDA suck');
+          $('input.feedback').addClass("bad");
+          $('input.feedback').removeClass("great");
+          $('input.feedback').removeClass("good");
+          $('input.feedback').removeClass("terrible");
       }
       else if (percentage >=0 && percentage <25){
           $('input.feedback').val('You REALLY suck');
+          $('input.feedback').addClass("terrible");
+          $('input.feedback').removeClass("great");
+          $('input.feedback').removeClass("good");
+          $('input.feedback').removeClass("bad");
       }
     }
   }
