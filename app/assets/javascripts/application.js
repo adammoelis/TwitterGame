@@ -41,7 +41,7 @@ $( document ).ready(function() {
       });
       preventButtonClicking();
       playGame();
-      
+
 
 });
 
@@ -86,6 +86,7 @@ function hideBreaks(){
 function showPlayAgain(){
   if(attempts >= getTweetArray().length){
     $('div.play-again').show();
+    $('div.play-again p.answer_status').text("You got "+ score + "/" + attempts + " correct! " + $('input.feedback').val());
   }
 }
 
@@ -145,6 +146,17 @@ function increaseScore(){
 
 function displayTweet(){
   $('h2.tweet_text').text(getTweetArray()[round-1]);
+}
+
+function flashGreen(){
+  $('.myButton').click(function(){
+    var e = $(this);
+    e.css('background-color', 'black');
+    window.setTimeout(function(){
+      e.css('background-color', '');
+    }, 500);
+  });
+
 }
 
 function setScore(selected){
