@@ -18,6 +18,7 @@ class HomeController < ApplicationController
     render 'home/custom'
 
   end
+  
 
   def new
     @username = params[:username]

@@ -17,6 +17,9 @@
 //= require jquery
 //= require bootstrap-sprockets
 $( document ).ready(function() {
+    round = 1;
+    score = 0;
+    attempts = 0;
     displayTweet();
     hideAddUsername();
     hideRemoveUsername();
