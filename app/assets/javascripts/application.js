@@ -17,9 +17,10 @@
 //= require jquery
 //= require bootstrap-sprockets
 $( document ).ready(function() {
-  displayTweet();
+    displayTweet();
     hideAddUsername();
     hideRemoveUsername();
+    hidePlayAgain();
     showAddUsername();
     showRemoveUsername();
     $('.social-pop-up').click(function(event) {
@@ -51,6 +52,40 @@ function hideAddUsername() {
 function hideRemoveUsername() {
   $('select#user_name').hide();
   $('input#remove-username-submit').hide();
+}
+
+function hidePlayAgain(){
+  $('div.play-again').hide()
+}
+
+function hideButtons(){
+  if(attempts >= getTweetArray().length){
+    $('div.all_buttons').hide();
+  }
+}
+
+function hideTweet(){
+  if(attempts >= getTweetArray().length){
+    $('div.tweet').hide();
+  }
+}
+
+function hideDefaults(){
+  if(attempts >= getTweetArray().length){
+    $('span.defaults').hide();
+  }
+}
+
+function hideBreaks(){
+  if(attempts >= getTweetArray().length){
+    $('br.breaks').hide();
+  }
+}
+
+function showPlayAgain(){
+  if(attempts >= getTweetArray().length){
+    $('div.play-again').show();
+  }
 }
 
 function showAddUsername() {
@@ -113,9 +148,14 @@ function displayTweet(){
 
 function setScore(selected){
   if(selected == getAccountArray()[round-1]){
-    increaseScore()
+    increaseScore();
+    displayRightAnswer(true);
+  }
+  else {
+    displayRightAnswer(false);
   }
   $('input[name=score]').val(score)
+
 }
 
 function setAttempts(){
@@ -174,6 +214,14 @@ function setFeedback(){
     }
   }
 
+function displayRightAnswer(boolean) {
+  if (boolean){
+    $('div.answer_status_box p.answer_status').text("Correct! " + getAccountArray()[round - 1])
+  }
+  else {
+    $('div.answer_status_box p.answer_status').text("Wrong! It was " + getAccountArray()[round - 1]);
+  }
+}
 
 
 function playGame (){
@@ -183,8 +231,12 @@ function playGame (){
     setAttempts();
     setPercentage();
     setFeedback();
-    displayRightAnswer();
     increaseRound();
+    hideButtons();
+    hideTweet();
+    hideDefaults();
+    hideBreaks();
+    showPlayAgain();
     displayTweet();
   })
 }

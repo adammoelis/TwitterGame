@@ -141,3 +141,15 @@
   Uh oh! It appears you aren't signed in! Please login above or return to the home game
 
 <% end %>
+
+<% tweet_array = [] %>
+<% account_array = [] %>
+
+<% Game.max_games.times do %>
+  <% account = @users.sample %>
+  <% account_array << account.name %>
+  <% tweet_array << account.tweets.sample.text %>
+<% end %>
+
+<input type="hidden" name="account_array" id="game_accounts" value="<%= account_array.join('^@$#') %>">
+<input type="hidden" name="tweet_array" id="game_tweets"  value="<%= tweet_array.join('^@$#') %>">
