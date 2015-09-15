@@ -251,6 +251,16 @@ function displayRightAnswer(boolean) {
   }
 }
 
+function setTwitterShareText(){
+  if (round < getTweetArray().length){
+    var namesArray = []
+    $('input.myButton').each(function(x){namesArray.push($($('input.myButton')[x]).val())});
+    var last = namesArray.pop();
+    namesList = namesArray.join(', ') + ', and ' + last;
+  }
+  $('a.twitter-share-button')[0].href="https://twitter.com/share?text=I got " + score + "/" +attempts +  " using "+ namesList +". How many can you guess? #WhoTweetedIt";
+}
+
 
 function playGame (){
   $('input.myButton').click(function(){
@@ -266,5 +276,6 @@ function playGame (){
     hideBreaks();
     showPlayAgain();
     displayTweet();
+    setTwitterShareText();
   })
 }
