@@ -13,7 +13,7 @@
   <br>
   <% if @game.attempts < Game.max_games %>
     <div class="tweet">
-      <h2 class="tweet_text"><%= @user.tweets.sample.text %></h2>
+      <h2 class="tweet_text"></h2>
     </div>
   <% end %>
 
@@ -117,5 +117,4 @@
   <% tweet_array << account.tweets.sample.text %>
 <% end %>
 
-<input type="hidden" name="account_array" id="game_accounts" value="<%= account_array.join('^@$#') %>">
-<input type="hidden" name="tweet_array" id="game_tweets"  value="<%= tweet_array.join('^@$#') %>">
+<input type="hidden" id="tweet_url"  value="/generate-default">

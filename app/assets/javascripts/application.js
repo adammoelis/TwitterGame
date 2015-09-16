@@ -17,14 +17,28 @@
 //= require jquery
 //= require bootstrap-sprockets
 $( document ).on('page:load',function() {
+  fetchUsersAndTweets(function(){
     runGame();
     playAgain();
+  });
 });
 
 $( document ).ready(function() {
-    runGame();
-    playAgain();
+    fetchUsersAndTweets(function(){
+      runGame();
+      playAgain();
+    });
 });
+
+function fetchUsersAndTweets(callback){
+  url = $('#tweet_url').val();
+  $.getJSON(url, function(data){
+    accountArrayGlobal = data['names'];
+    tweetArrayGlobal = data['tweets'];
+    callback = callback || function(){}
+    callback();
+  })
+}
 
 function runGame(){
   round = 1;
@@ -136,16 +150,20 @@ function selectedAnswer() {
 }
 
 function getAccountArray (){
-  return $('input:hidden#game_accounts').val().split("^@$#");
+  // return $('input:hidden#game_accounts').val().split("^@$#");
+  return accountArrayGlobal;
 }
 
 function getTweetArray (){
-  return $('input:hidden#game_tweets').val().split("^@$#");
+  // return $('input:hidden#game_tweets').val().split("^@$#");
+  return tweetArrayGlobal;
 }
 
 var round = 1;
 var score = 0;
 var attempts = 0;
+var tweetArrayGlobal = []
+var accountArrayGlobal = []
 
 function increaseRound(){
   round++
@@ -260,7 +278,6 @@ function setTwitterShareText(){
   }
   $('a.twitter-share-button')[0].href="https://twitter.com/share?text=I got " + score + "/" +attempts +  " using "+ namesList +". How many can you guess? #WhoTweetedIt";
 }
-
 
 function playGame (){
   $('input.myButton').click(function(){

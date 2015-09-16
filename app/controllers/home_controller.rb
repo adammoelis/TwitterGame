@@ -20,16 +20,28 @@ class HomeController < ApplicationController
   end
 
   def generate_default
-    @user = default_accounts.sample
-    @tweet = @user.tweets.sample.text
-    hash = {@user.name => @tweet}
+    tweet_array = []
+    account_array = []
+    Game.max_games.times do
+      @user = default_accounts.sample
+      account_array << @user.name
+      @tweet = @user.tweets.sample.text
+      tweet_array << @tweet
+    end
+    hash = {:names => account_array, :tweets => tweet_array}
     render json: hash
   end
 
   def generate_custom
-    @user = current_account.users.sample
-    @tweet = @user.tweets.sample.text
-    hash = {@user.name => @tweet}
+    tweet_array = []
+    account_array = []
+    Game.max_games.times do
+      @user = current_account.users.sample
+      account_array << @user.name
+      @tweet = @user.tweets.sample.text
+      tweet_array << @tweet
+    end
+    hash = {:names => account_array, :tweets => tweet_array}
     render json: hash
   end
 
