@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post '/game', to: "home#add_to_custom"
   patch '/game', to: "home#update_custom_score"
   delete '/game', to: "home#remove_from_custom"
+  get '/generate-default', to: "home#generate_default"
+  get '/generate-custom', to: "home#generate_custom"
 
 
   resources :users

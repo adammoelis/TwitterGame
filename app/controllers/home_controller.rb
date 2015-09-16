@@ -19,6 +19,20 @@ class HomeController < ApplicationController
 
   end
 
+  def generate_default
+    @user = default_accounts.sample
+    @tweet = @user.tweets.sample.text
+    hash = {@user.name => @tweet}
+    render json: hash
+  end
+
+  def generate_custom
+    @user = current_account.users.sample
+    @tweet = @user.tweets.sample.text
+    hash = {@user.name => @tweet}
+    render json: hash
+  end
+
 
   def new
     @username = params[:username]
