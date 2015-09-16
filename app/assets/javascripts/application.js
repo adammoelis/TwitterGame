@@ -265,6 +265,18 @@ function setTwitterShareText(){
 function playGame (){
   $('input.myButton').click(function(){
     var selected = $(this).val();
+    if(selected == getAccountArray()[round-1]){
+      $(this).css('backgroundColor', 'green');
+      setTimeout(function() {
+        $(this).css('background-color', 'black');
+      }.bind(this), 500);
+    }
+    else {
+      $(this).css('backgroundColor', 'red');
+      setTimeout(function() {
+        $(this).css('background-color', 'black');
+      }.bind(this), 500);
+    }
     setScore(selected);
     setAttempts();
     setPercentage();

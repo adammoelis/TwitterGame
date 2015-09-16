@@ -45,7 +45,7 @@ h2.tweet_text {
 .myButton {
   display: block;
 	font-size: 16px;
-  background-color: green;
+  background-color: black;
   // background-image: -webkit-gradient(linear, left top, left bottom, from(green), to(#e7e7e7));
   // background-image: -webkit-linear-gradient(top, green, #e7e7e7);
   // background-image: -moz-linear-gradient(top, green, #e7e7e7);
@@ -346,7 +346,7 @@ span {
 
 .fb-bg:after {
 	color: #fff;
-  font-size: 10px;
+  font-size: 14px;
 	content: "sign in with facebook";
 	font-family: 'Oswald', sans-serif;
 	height: 37px;
@@ -367,7 +367,7 @@ span {
 
 /* Twitter */
 .twi-icon-bg:after {
-  content: url(https://dl.dropboxusercontent.com/u/54149043/CssDeck/twi-icon.png);
+  content: url(http://img3.wikia.nocookie.net/__cb20130624031659/thefosters/images/4/4b/20px-Twitter_bird_icon.png);
   display: block;
   padding: 11px 10px 6px 11px;
 }
@@ -388,7 +388,7 @@ span {
 
 .twi-bg:after {
 	color: #fff;
-  font-size: 10px;
+  font-size: 14px;
 	content: "sign in with twitter";
 	font-family: 'Oswald', sans-serif;
 	height: 37px;
@@ -430,7 +430,7 @@ span {
 
 .g-bg:after {
 	color: #fff;
-  font-size: 10px;
+  font-size: 14px;
 	content: "sign in with google+";
 	font-family: 'Oswald', sans-serif;
 	height: 37px;
@@ -543,4 +543,12 @@ li > .btn-facebook {
 
 .fb-like {
   position: fixed;
+}
+
+.correct-color {
+  background-color: green;
+}
+
+.wrong-color {
+  background-color: red;
 }
