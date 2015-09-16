@@ -148,7 +148,7 @@
 <% Game.max_games.times do %>
   <% account = @users.sample %>
   <% account_array << account.name %>
-  <% tweet_array << account.tweets.sample.text %>
+  <% tweet_array << account.tweets.sample.text.gsub("&amp","&") %>
 <% end %>
 
 <input type="hidden" name="account_array" id="game_accounts" value="<%= account_array.join('^@$#') %>">
