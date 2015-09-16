@@ -266,15 +266,19 @@ function playGame (){
   $('input.myButton').click(function(){
     var selected = $(this).val();
     if(selected == getAccountArray()[round-1]){
+      $(this).removeClass('myButton_hover');
       $(this).addClass('correct-color');
       setTimeout(function() {
         $(this).removeClass('correct-color');
+        $(this).addClass('myButton_hover');
       }.bind(this), 500);
     }
     else {
+      $(this).removeClass('myButton_hover');
       $(this).addClass('wrong-color');
       setTimeout(function() {
         $(this).removeClass('wrong-color');
+        $(this).addClass('myButton_hover');
       }.bind(this), 500);
     }
     setScore(selected);

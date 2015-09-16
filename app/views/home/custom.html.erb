@@ -53,7 +53,7 @@
           <div class="all_buttons">
             <% @users.all.each do |user| %>
             <div id="name_button" class="<%= user.slug %>">
-              <input type="submit" class="myButton" name="name" value="<%= user.name %>">
+              <input type="submit" class="myButton myButton_hover" name="name" value="<%= user.name %>">
             </div>
             <% end %>
 
