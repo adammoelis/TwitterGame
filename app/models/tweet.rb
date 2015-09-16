@@ -22,6 +22,7 @@ class Tweet < ActiveRecord::Base
       end
       user
     else
+      false
     end
   end
 

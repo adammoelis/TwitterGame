@@ -18,7 +18,7 @@ class HomeController < ApplicationController
     render 'home/custom'
 
   end
-  
+
 
   def new
     @username = params[:username]
@@ -93,10 +93,18 @@ class HomeController < ApplicationController
       else
         if current_account.provider == "twitter"
           @user = Tweet.fetch_tweets_for(@username, current_account.twitter)
-          current_account.add_user(@user)
+          if @user.class.name=="User"
+            current_account.add_user(@user)
+          else
+            flash[:notice] = "Sorry, that username has no tweets"
+          end
         else
           @user = Tweet.fetch_tweets_for(@username)
-          current_account.add_user(@user)
+          if @user.class.name=="User"
+            current_account.add_user(@user)
+          else
+            flash[:notice] = "Sorry, that username has no tweets"
+          end
         end
       end
     end
