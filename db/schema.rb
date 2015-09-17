@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906193453) do
+ActiveRecord::Schema.define(version: 20150917145727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150906193453) do
     t.boolean  "republican"
     t.boolean  "democrat"
     t.boolean  "jerseyshore"
+    t.string   "username"
   end
 
   add_foreign_key "user_accounts", "accounts"
