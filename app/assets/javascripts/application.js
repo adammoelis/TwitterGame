@@ -252,14 +252,19 @@ function displayRightAnswer(boolean) {
 }
 
 function setTwitterShareText(){
-  if (round < getTweetArray().length){
+  if (round == getTweetArray().length+1) {
     var namesArray = []
-    $('input.myButton').each(function(x){namesArray.push($($('input.myButton')[x]).val())});
-    var last = namesArray.pop();
-    namesList = namesArray.join(', ') + ', and ' + last;
+    url = $('#username_url').val();
+    $.getJSON(url, function(data){
+      usernames = data['usernames'];
+      var last = namesArray.pop();
+      namesList = namesArray.join(', ') + ', and ' + last;
+      $('a.twitter-share-button')[0].href="https://twitter.com/share?text=I got " + score + "/" +attempts +  " using "+ namesList +". How many can you guess? #WhoTweetedIt";
+    })
+
   }
-  $('a.twitter-share-button')[0].href="https://twitter.com/share?text=I got " + score + "/" +attempts +  " using "+ namesList +". How many can you guess? #WhoTweetedIt";
 }
+
 
 
 function playGame (){
