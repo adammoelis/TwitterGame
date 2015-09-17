@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post '/game', to: "home#add_to_custom"
   patch '/game', to: "home#update_custom_score"
   delete '/game', to: "home#remove_from_custom"
+  get '/default-usernames', to: "home#default_usernames"
+  get '/custom-usernames', to: "home#custom_usernames"
 
 
   resources :users

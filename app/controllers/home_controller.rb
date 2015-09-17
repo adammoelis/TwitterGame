@@ -16,9 +16,19 @@ class HomeController < ApplicationController
     @game = Game.new(0,0)
     @users = User.all
     render 'home/custom'
-
   end
 
+  def default_usernames
+    @users = default_accounts
+    @usernames = @users.map{|user| user.username}
+    render json: {usernames: @usernames}
+  end
+
+  def custom_usernames
+    @users = current_account.users
+    @usernames = @users.map{|user| user.username}
+    render json: {usernames: @usernames}
+  end
 
   def new
     @username = params[:username]
