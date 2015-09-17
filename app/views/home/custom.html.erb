@@ -135,6 +135,14 @@
         <% end %>
 
     <% end %>
+    
+    <% if current_account.users.size >=2 %>
+      <% Game.max_games.times do %>
+        <% account = @users.sample %>
+        <% account_array << account.name %>
+        <% tweet_array << account.tweets.sample.text.gsub("&amp","&").gsub("&gt", ">").gsub("&lt","<") %>
+      <% end %>
+    <% end %>
 
 
 <% else %>
@@ -147,13 +155,7 @@
 <% account_array = [] %>
 
 
-<% if current_account.users.size >=2 %>
-  <% Game.max_games.times do %>
-    <% account = @users.sample %>
-    <% account_array << account.name %>
-    <% tweet_array << account.tweets.sample.text.gsub("&amp","&").gsub("&gt", ">").gsub("&lt","<") %>
-  <% end %>
-<% end %>
+
 
 <input type="hidden" name="account_array" id="game_accounts" value="<%= account_array.join('^@$#') %>">
 <input type="hidden" name="tweet_array" id="game_tweets"  value="<%= tweet_array.join('^@$#') %>">
