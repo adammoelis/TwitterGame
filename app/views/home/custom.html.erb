@@ -135,8 +135,10 @@
         <% end %>
 
     <% end %>
-    
+
     <% if current_account.users.size >=2 %>
+      <% tweet_array = [] %>
+      <% account_array = [] %>
       <% Game.max_games.times do %>
         <% account = @users.sample %>
         <% account_array << account.name %>
@@ -151,8 +153,7 @@
 
 <% end %>
 
-<% tweet_array = [] %>
-<% account_array = [] %>
+
 
 
 
