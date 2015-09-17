@@ -253,10 +253,13 @@ function displayRightAnswer(boolean) {
 
 function setTwitterShareText(){
   if (round == getTweetArray().length+1) {
-    var namesArray = []
     url = $('#username_url').val();
     $.getJSON(url, function(data){
       usernames = data['usernames'];
+      var namesArray = usernames.map(function(x){
+        return "@"+x;
+      })
+      debugger;
       var last = namesArray.pop();
       namesList = namesArray.join(', ') + ', and ' + last;
       $('a.twitter-share-button')[0].href="https://twitter.com/share?text=I got " + score + "/" +attempts +  " using "+ namesList +". How many can you guess? #WhoTweetedIt";
