@@ -259,9 +259,15 @@ function setTwitterShareText(){
       var namesArray = usernames.map(function(x){
         return "@"+x;
       })
-      var last = namesArray.pop();
-      namesList = namesArray.join(', ') + ', and ' + last;
+      if (namesArray.length == 2){
+        namesList = namesArray.join(' and ');
+      }
+      else {
+        var last = namesArray.pop();
+        namesList = namesArray.join(', ') + ', and ' + last;
+      }
       $('a.twitter-share-button')[0].href="https://twitter.com/share?text=I got " + score + "/" +attempts +  " using "+ namesList +". How many can you guess? #WhoTweetedIt";
+
     })
 
   }
