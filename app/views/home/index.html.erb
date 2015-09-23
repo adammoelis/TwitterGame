@@ -18,7 +18,7 @@
   <% end %>
 
 
-  <%= form_tag("/", method: "post") do |f| %>
+
   <div class="row"
     <div class="scoreboard">
       <div class="col-md-3">
@@ -51,40 +51,21 @@
    <% if @game.attempts < Game.max_games %>
       <div class="all_buttons">
         <% @users.each do |user| %>
-        <div id="name_button" class="<%= user.slug %>">
-          <input type="submit" class="myButton myButton_hover" name="name" value="<%= user.name %>">
-        </div>
+          <div id="name_button" class="<%= user.slug %>">
+            <input type="submit" class="myButton myButton_hover" name="name" value="<%= user.name %>">
+            <%= render partial: 'changedefault', locals: {user: user} %>
+          </div>
         <% end %>
       </div>
       <br>
       <input class="right-answer" type="hidden" name="user_name" value="<%= @user.name %>">
     <% end %>
-<% end %>
+
 
 <br>
 
-    <span class="defaults" style="position: absolute; width: 200px; right: 800px;">
-      <%= form_tag("/home", method: "post") do %>
-      <%= label_tag(:name, "Republican:") %> <br>
-      <%= collection_select(:user, :name, User.where(republican: true), :name, :name, {:selected =>  "Donald J. Trump"}, {id: 'republican_select'}) %> <br>
-      <%= submit_tag("Change Default") %>
-      <% end %>
-    </span>
-    <span class="defaults" style="position: absolute; width: 200px; right: 590px;">
-      <%= form_tag("/home", method: "post") do %>
-      <%= label_tag(:name, "Democrat:") %> <br>
-      <%= collection_select(:user, :name, User.where(democrat: true), :name, :name, {:selected =>  "Hillary Clinton"}, {id: 'democrat_select'}) %> <br>
-      <%= submit_tag("Change Default") %>
-      <% end %>
-    </span>
 
-    <span class="defaults" style="position: absolute; width: 200px; right: 390px;">
-      <%= form_tag("/home", method: "post") do %>
-      <%= label_tag(:name, "Jersey Shore:") %>
-      <%= collection_select(:user, :name, User.where(jerseyshore: true), :name, :name, {:selected =>  "DJ Pauly D"}, {id: 'jerseyshore_select'}) %>
-      <%= submit_tag("Change Default") %>
-      <% end %>
-    </span>
+
     <br class="breaks">
     <br class="breaks">
     <br class="breaks">
