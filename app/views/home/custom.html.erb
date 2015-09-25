@@ -1,4 +1,5 @@
 <% @active_tab = "custom" %>
+<% @default_game = false %>
 <% if current_account %>
 
     <% if current_account.users.size >=2 %>
@@ -13,23 +14,19 @@
         <br>
         <% if @game.attempts < Game.max_games %>
           <div class="all_buttons">
-              <%= render @users %>
+              <%= render partial: @users, locals: {default_game: false} %>
           </div>
           <br>
           <input type="hidden" name="user_name" value="<%= @user.name %>">
-      <% end %>
+       <% end %>
       <%= render 'answer_status' %>
-      <%= render 'play_again' %>
+      <%= render partial: 'play_again', locals: {default_game: false} %>
 
       <div class="container" style="margin-bottom:200px; margin-top:100px;">
+        <%= render 'add_remove_forms' %>
 
-
-      <%= render 'add_remove_forms' %>
-
-      <%= render 'flash_notice' %>
+        <%= render 'flash_notice' %>
       </div>
-
-
 
     <% else %>
       <% if current_account.users.size == 1 %>
@@ -62,6 +59,8 @@
 
 <% else %>
 
-  Uh oh! It appears you aren't signed in! Please login above or return to the home game
+  Generate your custom game
+  <%= render 'social_logins' %>
+
 
 <% end %>

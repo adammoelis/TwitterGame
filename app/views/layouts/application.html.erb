@@ -36,79 +36,19 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type-"button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <a class="navbar-brand" href="/"> Who-Twit-It? </a>
-        <ul class="nav navbar-nav navbar-left">
-
-        </ul>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li class=<%= "active" if @active_tab == "home"%>><a href="/">Home</a></li>
-        <li class=<%= "active" if @active_tab == "custom"%>><a href="/game">Custom Game</a></li>
-  <% if !current_account %>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Login <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li>  <a href="/auth/twitter/"> <div class="twi-icon-bg"></div><div class="twi-bg"></div></a></li>
-              <li><a href="/auth/facebook/">  <div class="fb-icon-bg"></div><div class="fb-bg"></div></a></li>
-              <li><a href="/auth/google_oauth2/">   <div class="g-icon-bg"></div> <div class="g-bg"></div></a></li>
-            </ul>
-        </li>
-  <% else %>
-      <li><a href="">Welcome, <%= current_account.name %></a></li>
-      <li><%= link_to "Log Out", {controller: "sessions", action: "logout"}, method: :post %></li>
-  <% end %>
-        <li><a href="mailto:adam.moelis@gmail.com">Contact Me</a></li>
-
-      </ul>
-   </div>
-
-  </div>
-</div>
+<%= render 'home/navbar' %>
 
 
 <div class="container">
+
 <%= yield %>
 
-
 </div>
 
+<%= render 'home/footer' %>
 
 
 
-<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="height: 10px;">
-  <div class="container">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="/"> Who-Twit-It? </a>
-    </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="social-navbar"><a href="https://twitter.com/share?text=<%="Can you guess WhoTweetedIt?"%>" title="Share on Twitter" target="_blank" class="btn btn-twitter twitter-share-button social-pop-up"><i class="fa fa-twitter"></i> Tweet</a></li>
-          <li class="social-navbar"><a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook social-pop-up"><i class="fa fa-facebook"></i> Share</a></li>
-
-
-        <div class="col-md-2"></div></li>
-
-
-        </ul>
-
-
-    <!-- <div class="navbar-text pull-right">
-      <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-      <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
-      <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
-
-    </div> -->
-  </div>
-</div>
 
 
 

@@ -4,6 +4,9 @@ class Game
 
     @@max_games = 10
 
+    def self.types
+      ["Default", "Custom"]
+    end
     def initialize(score, attempts)
       @score = score
       @attempts = attempts

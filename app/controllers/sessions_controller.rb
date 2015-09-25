@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
     session[:republican_default] = nil
     session[:democrat_default] = nil
     session[:jerseyshore_default] = nil
-
     redirect_to '/'
 
 

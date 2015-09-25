@@ -4,19 +4,21 @@ class HomeController < ApplicationController
   # http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"], except: [:index, :show, :update_score, :custom, :add_to_custom]
 
   def index
-    @game = Game.new(0,0)
-    @users = default_accounts
-    @user = @users.sample 
     session[:republican_default] ||= User.find_by(name: "Donald J. Trump").name
     session[:democrat_default] ||= User.find_by(name: "Hillary Clinton").name
     session[:jerseyshore_default] ||= User.find_by(name: "DJ Pauly D").name
+    @game = Game.new(0,0)
+    @users = default_accounts
+    @user = @users.sample
     render 'home/index'
   end
 
   def custom
     @game = Game.new(0,0)
-    @users = current_account.users
-    @user = @users.sample
+    if current_account
+      @users = current_account.users
+      @user = @users.sample
+    end
     render 'home/custom'
   end
 

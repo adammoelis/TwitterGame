@@ -1,0 +1,36 @@
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type-"button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="/"> Who-Twit-It? </a>
+        <ul class="nav navbar-nav navbar-left">
+
+        </ul>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class=<%= "active" if @active_tab == "home"%>><a href="/">Home</a></li>
+  <% if !current_account %>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Create a Custom Game!<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <%= render 'social_logins' %>
+            </ul>
+        </li>
+  <% else %>
+      <li class=<%= "active" if @active_tab == "custom"%>><a href="/game">Custom Game</a></li>
+      <li><a href="">Welcome, <%= current_account.name %></a></li>
+      <li><%= link_to "Log Out", {controller: "sessions", action: "logout"}, method: :post %></li>
+  <% end %>
+        <li><a href="mailto:adam.moelis@gmail.com">Contact Me</a></li>
+
+      </ul>
+   </div>
+
+  </div>
+</div>

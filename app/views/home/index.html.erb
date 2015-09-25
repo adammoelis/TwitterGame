@@ -1,11 +1,6 @@
 <% @active_tab = "home" %>
-
-
-
   <%= render 'title' %>
-
   <br>
-
   <br>
   <% if @game.attempts < Game.max_games %>
       <%= render partial: 'tweet', locals: {user: @user} %>
@@ -17,45 +12,18 @@
   <br>
    <% if @game.attempts < Game.max_games %>
       <div class="all_buttons">
-        <% @users.each do |user| %>
-          <div id="name_button" class="<%= user.slug %>">
-            <input type="submit" class="myButton myButton_hover" name="name" value="<%= user.name %>">
-            <%= render partial: 'changedefault', locals: {user: user} %>
-          </div>
-        <% end %>
+          <%= render partial: @users, locals: {default_game: true} %>
       </div>
       <br>
       <input class="right-answer" type="hidden" name="user_name" value="<%= @user.name %>">
     <% end %>
-
-
-<br>
-
-
-
-    <br class="breaks">
-    <br class="breaks">
-    <br class="breaks">
-    <br class="breaks">
-
-
-
-  <div class="answer_status_box">
-    <p class="answer_status"> <%= @game.display_after_answer %></p>
-  </div>
-
-  <div class="container play-again">
-    <div class="share-game">
-      <p class="share-game">Tweet your score and share your game with friends!</p>
-      <a href="https://twitter.com/share?text=<%="I got #{@game.score}/#{@game.attempts} using #{@users.map{|user| user.name}.to_sentence}. How many can you guess? #WhoTweetedIt"%>" title="Share on Twitter" target="_blank" class="btn btn-twitter twitter-share-button social-pop-up"><i class="fa fa-twitter"></i> Twitter</a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook social-pop-up"><i class="fa fa-facebook"></i> Facebook</a>
-    </div>
-    <p class="answer_status" style="font-size: 50px;"><%= "You got #{@game.score}/#{@game.attempts} correct! #{@game.feedback_value}" %></p>
     <br>
-    <a href="/"><button id="playAgain">Play Again!</button></a>
-    <br>
-    <br>
-  </div>
+    <br class="breaks">
+    <br class="breaks">
+    <br class="breaks">
+    <br class="breaks">
+    <%= render 'answer_status' %>
+    <%= render partial: 'play_again', locals: {default_game: true} %>
 
 
 <% tweet_array = [] %>
