@@ -5,7 +5,8 @@ class HomeController < ApplicationController
 
   def index
     @game = Game.new(0,0)
-    @users = User.all
+    @users = default_accounts
+    @user = @users.sample 
     session[:republican_default] ||= User.find_by(name: "Donald J. Trump").name
     session[:democrat_default] ||= User.find_by(name: "Hillary Clinton").name
     session[:jerseyshore_default] ||= User.find_by(name: "DJ Pauly D").name
@@ -14,7 +15,8 @@ class HomeController < ApplicationController
 
   def custom
     @game = Game.new(0,0)
-    @users = User.all
+    @users = current_account.users
+    @user = @users.sample
     render 'home/custom'
   end
 
