@@ -1,0 +1,5 @@
+<%= form_tag("/game", method: "delete") do %>
+<%= label_tag(:name, "Remove from game") %>
+<%= collection_select(:user, :name, current_account.users, :name, :name,{}, {id: 'remove-username-2'}) %>
+<%= submit_tag("Remove") %>
+<% end %>

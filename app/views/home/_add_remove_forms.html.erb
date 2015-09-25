@@ -1,0 +1,11 @@
+<%= form_tag("/game", method: "post") do %>
+<%= label_tag(:username, "Add a username", id: "add-username") %>
+<%= text_field_tag(:username) %>
+<%= submit_tag("Submit", id: "add-username-submit") %>
+<% end %>
+
+<%= form_tag("/game", method: "delete") do %>
+<%= label_tag(:name, "Remove a username", id: "remove-username") %>
+<%= collection_select(:user, :name, @users, :name, :name) %>
+<%= submit_tag("Remove", id: "remove-username-submit") %>
+<% end %>

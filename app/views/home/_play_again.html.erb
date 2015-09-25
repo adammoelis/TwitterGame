@@ -1,0 +1,12 @@
+<div class="container play-again">
+  <div class="share-game">
+    <p class="share-game">Tweet your score and share your game with friends!</p>
+    <a href="https://twitter.com/share?text=<%="I got #{@game.score}/#{@game.attempts} using #{@users.map{|user| user.name}.to_sentence}. How many can you guess? #WhoTweetedIt"%>" title="Share on Twitter" target="_blank" class="btn btn-twitter twitter-share-button social-pop-up"><i class="fa fa-twitter"></i> Twitter</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook social-pop-up"><i class="fa fa-facebook"></i> Facebook</a>
+  </div>
+  <p class="answer_status" style="font-size: 50px;"><%= "You got #{@game.score}/#{@game.attempts} correct! #{@game.feedback_value}" %></p>
+  <br>
+  <a href="/game"><button>Play Again!</button></a>
+  <br>
+  <br>
+</div>

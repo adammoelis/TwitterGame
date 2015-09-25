@@ -3,108 +3,46 @@
 
     <% if current_account.users.size >=2 %>
         <%= render 'title' %>
-
         <br>
-
-
         <br>
-
         <% if @game.attempts < Game.max_games %>
           <%= render partial: 'tweet', locals: {user: @user} %>
         <% end %>
-
-
-        <%= form_tag("/game", method: "patch") do |f| %>
           <%= render 'scoreboard' %>
-
         <br>
         <br>
         <% if @game.attempts < Game.max_games %>
           <div class="all_buttons">
-            <% @users.all.each do |user| %>
-            <div id="name_button" class="<%= user.slug %>">
-              <input type="submit" class="myButton myButton_hover" name="name" value="<%= user.name %>">
-            </div>
-            <% end %>
-
+              <%= render @users %>
           </div>
           <br>
           <input type="hidden" name="user_name" value="<%= @user.name %>">
       <% end %>
-    <% end %>
-
-
-        <div class="answer_status_box">
-          <p class="answer_status"> <%= @game.display_after_answer %></p>
-        </div>
-
-            <div class="container play-again">
-              <div class="share-game">
-                <p class="share-game">Tweet your score and share your game with friends!</p>
-                <a href="https://twitter.com/share?text=<%="I got #{@game.score}/#{@game.attempts} using #{@users.map{|user| user.name}.to_sentence}. How many can you guess? #WhoTweetedIt"%>" title="Share on Twitter" target="_blank" class="btn btn-twitter twitter-share-button social-pop-up"><i class="fa fa-twitter"></i> Twitter</a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=" title="Share on Facebook" target="_blank" class="btn btn-facebook social-pop-up"><i class="fa fa-facebook"></i> Facebook</a>
-              </div>
-              <p class="answer_status" style="font-size: 50px;"><%= "You got #{@game.score}/#{@game.attempts} correct! #{@game.feedback_value}" %></p>
-              <br>
-              <a href="/game"><button>Play Again!</button></a>
-              <br>
-              <br>
-            </div>
-
-
+      <%= render 'answer_status' %>
+      <%= render 'play_again' %>
 
       <div class="container" style="margin-bottom:200px; margin-top:100px;">
 
 
-      <%= form_tag("/game", method: "post") do %>
-      <%= label_tag(:username, "Add a username", id: "add-username") %>
-      <%= text_field_tag(:username) %>
-      <%= submit_tag("Submit", id: "add-username-submit") %>
-      <% end %>
+      <%= render 'add_remove_forms' %>
 
-      <%= form_tag("/game", method: "delete") do %>
-      <%= label_tag(:name, "Remove a username", id: "remove-username") %>
-      <%= collection_select(:user, :name, @users, :name, :name) %>
-      <%= submit_tag("Remove", id: "remove-username-submit") %>
-      <% end %>
-      <% if flash[:notice] %>
-        <div class="alert alert-danger">
-            <%= flash[:notice] %>
-        </div>
-        <% end %>
-        </div>
+      <%= render 'flash_notice' %>
+      </div>
 
 
 
     <% else %>
       <% if current_account.users.size == 1 %>
         <h2>To get started, you'll need to enter one more Twitter handle</h2>
-        <%= form_tag("/game", method: "post") do %>
-        <%= label_tag(:username, "Enter 2nd Twitter handle") %>
-        <%= text_field_tag(:username, params[:username], id: "add-username-2") %>
-        <%= submit_tag("Submit") %>
-        <% end %>
-        <%= form_tag("/game", method: "delete") do %>
-        <%= label_tag(:name, "Remove from game") %>
-        <%= collection_select(:user, :name, current_account.users, :name, :name,{}, {id: 'remove-username-2'}) %>
-        <%= submit_tag("Remove") %>
-        <% end %>
+        <%= render 'add_second_handle' %>
+        <%= render 'remove_user' %>
       <% else %>
         <h2>To get started, you'll need to enter two Twitter handles</h2>
-        <%= form_tag("/game", method: "post") do %>
-        <%= label_tag(:username, "Enter 1st handle") %>
-        <%= text_field_tag(:username, params[:username], id: "add-username-2") %>
-        <%= submit_tag("Submit") %>
-        <% end %>
+        <%= render 'add_first_handle' %>
       <% end %>
 
 
-      <% if flash[:notice] %>
-        <div class="alert alert-danger">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <%= flash[:notice] %>
-        </div>
-        <% end %>
+    <%= render 'flash_notice' %>
 
     <% end %>
 

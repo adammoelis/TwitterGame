@@ -1,0 +1,5 @@
+<%= form_tag("/game", method: "post") do %>
+<%= label_tag(:username, "Enter 1st handle") %>
+<%= text_field_tag(:username, params[:username], id: "add-username-2") %>
+<%= submit_tag("Submit") %>
+<% end %>
