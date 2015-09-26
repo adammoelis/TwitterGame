@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
-  # include Key
   protect_from_forgery with: :null_session
-  # http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"], except: [:index, :show, :update_score, :custom, :add_to_custom]
 
   def index
     session[:republican_default] ||= User.find_by(name: "Donald J. Trump").name
