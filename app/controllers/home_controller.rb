@@ -122,7 +122,7 @@ class HomeController < ApplicationController
         end
       end
     end
-    redirect_to '/game'
+    redirect_to '/custom'
   end
 
   def remove_from_custom
@@ -130,7 +130,7 @@ class HomeController < ApplicationController
       @user = User.where("name Like ?", params[:user][:name]).first
       current_account.remove_user(@user)
     end
-    redirect_to '/game'
+    redirect_to '/custom'
   end
 
 

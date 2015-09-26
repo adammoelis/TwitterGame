@@ -23,7 +23,7 @@
             </ul>
         </li>
   <% else %>
-      <li class=<%= "active" if @active_tab == "custom"%>><a href="/game">Custom Game</a></li>
+      <li class=<%= "active" if @active_tab == "custom"%>><a href="/custom">Custom Game</a></li>
       <li><a href="">Welcome, <%= current_account.name %></a></li>
       <li><%= link_to "Log Out", {controller: "sessions", action: "logout"}, method: :post %></li>
   <% end %>

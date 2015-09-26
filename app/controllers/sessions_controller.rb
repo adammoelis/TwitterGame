@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   def create
     @account = Account.find_or_create_from_auth_hash(auth_hash)
     session[:account_id] = @account.id
-    redirect_to '/game'
+    redirect_to '/custom'
   end
 
   def logout
