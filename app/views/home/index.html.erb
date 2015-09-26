@@ -1,14 +1,11 @@
 <% @active_tab = "home" %>
   <%= render 'title' %>
   <br>
-  <br>
   <% if @game.attempts < Game.max_games %>
       <%= render partial: 'tweet', locals: {user: @user} %>
   <% end %>
 
   <%= render 'scoreboard' %>
-
-  <br>
   <br>
    <% if @game.attempts < Game.max_games %>
       <div class="all_buttons">
