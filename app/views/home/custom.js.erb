@@ -1,0 +1,15 @@
+
+
+function hideEverything(){
+  $('.scoreboard').fadeOut(400)
+  $('.tweet').fadeOut(400)
+  $('.answer_status_box').fadeOut(400)
+  $('.all_buttons').fadeOut(400, function(){
+      $('.title').after('<%= j render 'custom_game_template' %>')
+      $('.sign_in_options').hide().fadeIn(1000)
+      $('.customize-button').replaceWith('<%= j render "play_default_game_link" %>')
+  })
+}
+
+
+hideEverything()
